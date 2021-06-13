@@ -122,7 +122,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           ]),
                     ),
                     Text(
-                      "COFFEEee",
+                      "COFFEE",
                       style: TextStyle(
                         fontFamily: "Antipasto Pro",
                         fontSize: 62,
