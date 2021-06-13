@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_swipable/flutter_swipable.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -131,12 +132,23 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ),
                 Expanded(
                   flex: 46,
-                  child: Swipable(
-                    child: Container(
-                      margin: EdgeInsets.only(
-                          left: screenWidth / 4, top: screenHeight / 100),
-                      child: Image.asset(
-                          'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: screenWidth / 10, top: screenHeight / 100),
+                    child: Carousel(
+                      indicatorBgPadding: 2.0,
+                      autoplay: false,
+                      dotBgColor: Colors.transparent,
+                      boxFit: BoxFit.fitHeight,
+                      dotIncreasedColor: Color(0xffFFB500),
+                      images: [
+                        Image.asset(
+                            'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                        Image.asset(
+                            'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                        Image.asset(
+                            'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                      ],
                     ),
                   ),
                 ),
