@@ -118,35 +118,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         ),
                       ),
                       Container(
-                        child: Stack(
-                          children: [
-                            Container(
-                              child: Padding(
-                                padding:
-                                    EdgeInsets.only(left: screenWidth / 35),
-                                child: Container(
-                                  child: Image.asset(
-                                      'assests/categories_screen/Drawn_Path/Drawn_Path.png'),
-                                  height: screenHeight / 11,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: screenWidth / 15,
-                                    top: screenHeight / 75),
-                                child: Text(
-                                  'COFFEE',
-                                  style: TextStyle(
-                                    color: Color(0xffF4EFE3),
-                                    fontFamily: 'Antipasto Pro',
-                                    fontSize: screenHeight / 13,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                        height: screenHeight / 10,
+                        child: FittedBox(
+                          alignment: Alignment.topLeft,
+                          child: Image.asset(
+                            'assests/categories_screen/Categories_name_with_drawn_path/coffee.png',
+                          ),
                         ),
                       ),
                     ],
