@@ -62,7 +62,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         child: Stack(
                           children: [
                             Swipable(
-                              
                               child: Image(
                                   image: AssetImage(
                                       "assests/categories_screen/Coffee_Card/Coffee_Card.png")),
@@ -123,7 +122,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           ]),
                     ),
                     Text(
-                      "COFFEE",
+                      "COFFEEee",
                       style: TextStyle(
                         fontFamily: "Antipasto Pro",
                         fontSize: 62,
