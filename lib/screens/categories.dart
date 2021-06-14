@@ -25,6 +25,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             scrollDirection: Axis.horizontal,
             controller: controller,
             children: [
+              //Coffee
               Stack(
                 children: [
                   //Starbucks Logo, Starbucks Watermark
@@ -104,8 +105,173 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                 ],
               ),
-              Burger(),
-              IceCream(),
+              //Burger
+              Stack(
+                children: [
+                  //McDonalds Logo, McDonalds Watermark
+                  Container(
+                    // width: screenWidth,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          //-------Empty Space-----------
+                          child: Container(),
+                          flex: 1,
+                        ),
+                        //-------Starbucks Logo--------
+                        Image(
+                          image: AssetImage(
+                              "assests/categories_screen/McDonalds_Logo/McDonalds_Logo.png"),
+                        ),
+                        //-------Empty Space-----------
+                        Expanded(
+                          flex: 8,
+                          child: Container(),
+                        ),
+                        //-------Starbucks Watermark--------
+                        Image(
+                          image: AssetImage(
+                              "assests/categories_screen/McDonalds_Watermark/McDonalds_Watermark.png"),
+                        ),
+                      ],
+                    ),
+                  ),
+                  //Burger Card, rectangle Card Watermark
+                  Positioned(
+                    top: 251.17,
+                    left: 40.87,
+                    child: Stack(
+                      children: [
+                        Image(
+                            image: AssetImage(
+                                "assests/categories_screen/Coffee_Card_Watermark/Coffee_Card_Watermark.png")),
+                        Positioned(
+                          top: 16.83,
+                          left: 27.13,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 322,
+                                height: 444,
+                                child: Image(
+                                  image: AssetImage(
+                                      "assests/categories_screen/Burger_Card/Burger_Card.png"),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  //Drawn Path
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.69, top: 159.69),
+                    child: Container(
+                      height: 75,
+                      child: FittedBox(
+                        child: Image(
+                          image: AssetImage(
+                              "assests/categories_screen/Drawn_Path/Drawn_Path.png"),
+                        ),
+                      ),
+                    ),
+                  ),
+                  //BURGER Text
+                  Container(
+                    padding: EdgeInsets.fromLTRB(22, 170, 15, 11),
+                    child: Text(
+                      "BURGER",
+                      style: TextStyle(
+                        fontFamily: "Antipasto Pro",
+                        fontSize: 62,
+                        color: Color.fromRGBO(244, 239, 227, 1),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              //IceCream
+              Stack(
+                children: [
+
+                  //Ice cream Watermark
+
+                  Container(
+                    // width: screenWidth,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          //-------Empty Space-----------
+                          child: Container(),
+                          flex: 1,
+                        ),
+                        //-------Empty Space-----------
+                        Expanded(
+                          flex: 8,
+                          child: Container(),
+                        ),
+                        //-------IceCream Watermark--------
+                        Image(
+                          image: AssetImage(
+                              "assests/categories_screen/Ice_Cream_Watermark/Ice_Cream_Watermark.png"),
+                        ),
+                      ],
+                    ),
+                  ),
+                  //Ice cream Card, Rectangle Card Watermark
+                  Positioned(
+                    top: 251.17,
+                    left: 40.87,
+                    child: Stack(
+                      children: [
+                        Image(
+                            image: AssetImage(
+                                "assests/categories_screen/Coffee_Card_Watermark/Coffee_Card_Watermark.png")),
+                        Positioned(
+                          top: 16.83,
+                          left: 27.13,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 322,
+                                height: 444,
+                                child: Image(
+                                  image: AssetImage(
+                                      "assests/categories_screen/Ice_Cream_Card/Ice_Cream_Card.png"),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  //Drawn Path
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.69, top: 160.69),
+                    child: Container(
+                      height: 88,
+                      child: Image(
+                        fit: BoxFit.fill,
+                        image: AssetImage(
+                            "assests/categories_screen/Drawn_Path/Drawn_Path.png"),),
+                    ),
+                  ),
+                  //ICECREAM Text
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15, 175, 15, 11),
+                    child: Text(
+                      "ICECREAM",
+                      style: TextStyle(
+                        fontFamily: "Antipasto Pro",
+                        fontSize: 62,
+                        color: Color.fromRGBO(244, 239, 227, 1),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           //Dock
@@ -185,181 +351,4 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 }
 
 
-class Burger extends StatelessWidget {
 
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        //Starbucks Logo, Starbucks Watermark
-        Container(
-          // width: screenWidth,
-          child: Column(
-            children: [
-              Expanded(
-                //-------Empty Space-----------
-                child: Container(),
-                flex: 1,
-              ),
-              //-------Starbucks Logo--------
-              Image(
-                image: AssetImage(
-                    "assests/categories_screen/McDonalds_Logo/McDonalds_Logo.png"),
-              ),
-              //-------Empty Space-----------
-              Expanded(
-                flex: 8,
-                child: Container(),
-              ),
-              //-------Starbucks Watermark--------
-              Image(
-                image: AssetImage(
-                    "assests/categories_screen/McDonalds_Watermark/McDonalds_Watermark.png"),
-              ),
-            ],
-          ),
-        ),
-        //Coffee Card, Coffee Card Watermark
-        Positioned(
-          top: 251.17,
-          left: 40.87,
-          child: Stack(
-            children: [
-              Image(
-                  image: AssetImage(
-                      "assests/categories_screen/Coffee_Card_Watermark/Coffee_Card_Watermark.png")),
-              Positioned(
-                top: 16.83,
-                left: 27.13,
-                child: Column(
-                  children: [
-                    Container(
-                      width: 322,
-                      height: 444,
-                      child: Image(
-                        image: AssetImage(
-                            "assests/categories_screen/Burger_Card/Burger_Card.png"),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-        //Drawn Path
-        Padding(
-          padding: const EdgeInsets.only(left: 8.69, top: 159.69),
-          child: Container(
-            height: 75,
-            child: FittedBox(
-
-              child: Image(
-                  image: AssetImage(
-                      "assests/categories_screen/Drawn_Path/Drawn_Path.png")),
-            ),
-          ),
-        ),
-        //COFFEE Text
-        Container(
-          padding: EdgeInsets.fromLTRB(22, 170, 15, 11),
-          child: Text(
-            "BURGER",
-            style: TextStyle(
-              fontFamily: "Antipasto Pro",
-              fontSize: 62,
-              color: Color.fromRGBO(244, 239, 227, 1),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class IceCream extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-
-        //Ice cream Watermark
-
-        Container(
-          // width: screenWidth,
-          child: Column(
-            children: [
-              Expanded(
-                //-------Empty Space-----------
-                child: Container(),
-                flex: 1,
-              ),
-              //-------Empty Space-----------
-              Expanded(
-                flex: 8,
-                child: Container(),
-              ),
-              //-------Starbucks Watermark--------
-              Image(
-                image: AssetImage(
-                    "assests/categories_screen/Ice_Cream_Watermark/Ice_Cream_Watermark.png"),
-              ),
-            ],
-          ),
-        ),
-        //Ice cream Card, Rectangle Card Watermark
-        Positioned(
-          top: 251.17,
-          left: 40.87,
-          child: Stack(
-            children: [
-              Image(
-                  image: AssetImage(
-                      "assests/categories_screen/Coffee_Card_Watermark/Coffee_Card_Watermark.png")),
-              Positioned(
-                top: 16.83,
-                left: 27.13,
-                child: Column(
-                  children: [
-                    Container(
-                      width: 322,
-                      height: 444,
-                      child: Image(
-                        image: AssetImage(
-                            "assests/categories_screen/Ice_Cream_Card/Ice_Cream_Card.png"),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-        //Drawn Path
-        Padding(
-          padding: const EdgeInsets.only(left: 10.69, top: 160.69),
-          child: Container(
-            height: 88,
-            child: Image(
-              fit: BoxFit.fill,
-              image: AssetImage(
-                    "assests/categories_screen/Drawn_Path/Drawn_Path.png"),),
-          ),
-        ),
-        //COFFEE Text
-        Container(
-          padding: EdgeInsets.fromLTRB(15, 175, 15, 11),
-          child: Text(
-            "ICECREAM",
-            style: TextStyle(
-              fontFamily: "Antipasto Pro",
-              fontSize: 62,
-              color: Color.fromRGBO(244, 239, 227, 1),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
