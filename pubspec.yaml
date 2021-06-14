@@ -67,6 +67,9 @@ flutter:
     - assests/categories_screen/TabBar_BG/
     - assests/categories_screen/TabBar_Indicator/
     - assests/categories_screen/Categories_name_with_drawn_path/
+    - assests/categories_screen/McDonalds_Logo/
+    - assests/categories_screen/McDonalds_Watermark/
+    - assests/categories_screen/Burger_Card/
     - assests/categories_screen/Ice_Cream_Card/
     - assests/categories_screen/Ice_Cream_Watermark/
 
