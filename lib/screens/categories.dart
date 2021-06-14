@@ -204,7 +204,7 @@ class Burger extends StatelessWidget {
               //-------Starbucks Logo--------
               Image(
                 image: AssetImage(
-                    "assests/categories_screen/Starbucks_Logo/Starbucks_Logo.png"),
+                    "assests/categories_screen/McDonalds_Logo/McDonalds_Logo.png"),
               ),
               //-------Empty Space-----------
               Expanded(
@@ -214,7 +214,7 @@ class Burger extends StatelessWidget {
               //-------Starbucks Watermark--------
               Image(
                 image: AssetImage(
-                    "assests/categories_screen/STARBUCKS_Watermark/STARBUCKS_Watermark.png"),
+                    "assests/categories_screen/McDonalds_Watermark/McDonalds_Watermark.png"),
               ),
             ],
           ),
@@ -238,23 +238,8 @@ class Burger extends StatelessWidget {
                       height: 444,
                       child: Image(
                         image: AssetImage(
-                            "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                            "assests/categories_screen/Burger_Card/Burger_Card.png"),
                       ),
-                      // child: Carousel(
-                      //   indicatorBgPadding: 2.0,
-                      //   autoplay: false,
-                      //   dotBgColor: Colors.transparent,
-                      //   boxFit: BoxFit.fitHeight,
-                      //   dotIncreasedColor: Color(0xffFFB500),
-                      //   images: [
-                      //     Image.asset(
-                      //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                      //     Image.asset(
-                      //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                      //     Image.asset(
-                      //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                      //   ],
-                      // ),
                     ),
                   ],
                 ),
@@ -265,15 +250,21 @@ class Burger extends StatelessWidget {
         //Drawn Path
         Padding(
           padding: const EdgeInsets.only(left: 8.69, top: 159.69),
-          child: Image(
-              image: AssetImage(
-                  "assests/categories_screen/Drawn_Path/Drawn_Path.png")),
+          child: Container(
+            height: 75,
+            child: FittedBox(
+
+              child: Image(
+                  image: AssetImage(
+                      "assests/categories_screen/Drawn_Path/Drawn_Path.png")),
+            ),
+          ),
         ),
         //COFFEE Text
         Container(
-          padding: EdgeInsets.fromLTRB(15, 167, 15, 11),
+          padding: EdgeInsets.fromLTRB(22, 170, 15, 11),
           child: Text(
-            "COFFEE",
+            "BURGER",
             style: TextStyle(
               fontFamily: "Antipasto Pro",
               fontSize: 62,
