@@ -72,25 +72,26 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Carousel(
-                                  indicatorBgPadding: 2.0,
-                                  autoplay: false,
-                                  dotBgColor: Colors.transparent,
-                                  boxFit: BoxFit.fitHeight,
-                                  dotIncreasedColor: Color(0xffFFB500),
-                                  images: [
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                  ],
-                                ),
-                              ),
-                              Image(
+                                child: Image(
                                   image: AssetImage(
-                                      "assests/categories_screen/Dock/Dock.png")),
+                                      "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                                ),
+                                // child: Carousel(
+                                //   indicatorBgPadding: 2.0,
+                                //   autoplay: false,
+                                //   dotBgColor: Colors.transparent,
+                                //   boxFit: BoxFit.fitHeight,
+                                //   dotIncreasedColor: Color(0xffFFB500),
+                                //   images: [
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //   ],
+                                // ),
+                              ),
                             ],
                           ),
                         )
@@ -165,25 +166,26 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Carousel(
-                                  indicatorBgPadding: 2.0,
-                                  autoplay: false,
-                                  dotBgColor: Colors.transparent,
-                                  boxFit: BoxFit.fitHeight,
-                                  dotIncreasedColor: Color(0xffFFB500),
-                                  images: [
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                  ],
-                                ),
-                              ),
-                              Image(
+                                child: Image(
                                   image: AssetImage(
-                                      "assests/categories_screen/Dock/Dock.png")),
+                                      "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                                ),
+                                // child: Carousel(
+                                //   indicatorBgPadding: 2.0,
+                                //   autoplay: false,
+                                //   dotBgColor: Colors.transparent,
+                                //   boxFit: BoxFit.fitHeight,
+                                //   dotIncreasedColor: Color(0xffFFB500),
+                                //   images: [
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //   ],
+                                // ),
+                              ),
                             ],
                           ),
                         )
@@ -258,25 +260,26 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Carousel(
-                                  indicatorBgPadding: 2.0,
-                                  autoplay: false,
-                                  dotBgColor: Colors.transparent,
-                                  boxFit: BoxFit.fitHeight,
-                                  dotIncreasedColor: Color(0xffFFB500),
-                                  images: [
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                    Image.asset(
-                                        'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                                  ],
-                                ),
-                              ),
-                              Image(
+                                child: Image(
                                   image: AssetImage(
-                                      "assests/categories_screen/Dock/Dock.png")),
+                                      "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                                ),
+                                // child: Carousel(
+                                //   indicatorBgPadding: 2.0,
+                                //   autoplay: false,
+                                //   dotBgColor: Colors.transparent,
+                                //   boxFit: BoxFit.fitHeight,
+                                //   dotIncreasedColor: Color(0xffFFB500),
+                                //   images: [
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //     Image.asset(
+                                //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
+                                //   ],
+                                // ),
+                              ),
                             ],
                           ),
                         )
@@ -305,6 +308,25 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ],
               ),
             ],
+          ),
+          //Dock
+          Padding(
+            padding: EdgeInsets.only(left: 68, right: 20),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(),
+                  flex: 34,
+                ),
+                Image(
+                    image:
+                        AssetImage("assests/categories_screen/Dock/Dock.png")),
+                Expanded(
+                  child: Container(),
+                  flex: 7,
+                ),
+              ],
+            ),
           ),
           //Select Category
           Container(
