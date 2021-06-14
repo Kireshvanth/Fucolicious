@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_swipable: ^0.1.1
+  carousel_pro: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,9 @@ flutter:
     - assests/categories_screen/Swipe_Down/
     - assests/categories_screen/TabBar_BG/
     - assests/categories_screen/TabBar_Indicator/
+    - assests/categories_screen/Categories_name_with_drawn_path/
+    - assests/categories_screen/Ice_Cream_Card/
+    - assests/categories_screen/Ice_Cream_Watermark/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
