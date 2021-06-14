@@ -292,7 +292,9 @@ class IceCream extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        //Starbucks Logo, Starbucks Watermark
+
+        //Ice cream Watermark
+
         Container(
           // width: screenWidth,
           child: Column(
@@ -302,11 +304,6 @@ class IceCream extends StatelessWidget {
                 child: Container(),
                 flex: 1,
               ),
-              //-------Starbucks Logo--------
-              Image(
-                image: AssetImage(
-                    "assests/categories_screen/Starbucks_Logo/Starbucks_Logo.png"),
-              ),
               //-------Empty Space-----------
               Expanded(
                 flex: 8,
@@ -315,12 +312,12 @@ class IceCream extends StatelessWidget {
               //-------Starbucks Watermark--------
               Image(
                 image: AssetImage(
-                    "assests/categories_screen/STARBUCKS_Watermark/STARBUCKS_Watermark.png"),
+                    "assests/categories_screen/Ice_Cream_Watermark/Ice_Cream_Watermark.png"),
               ),
             ],
           ),
         ),
-        //Coffee Card, Coffee Card Watermark
+        //Ice cream Card, Rectangle Card Watermark
         Positioned(
           top: 251.17,
           left: 40.87,
@@ -339,23 +336,8 @@ class IceCream extends StatelessWidget {
                       height: 444,
                       child: Image(
                         image: AssetImage(
-                            "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                            "assests/categories_screen/Ice_Cream_Card/Ice_Cream_Card.png"),
                       ),
-                      // child: Carousel(
-                      //   indicatorBgPadding: 2.0,
-                      //   autoplay: false,
-                      //   dotBgColor: Colors.transparent,
-                      //   boxFit: BoxFit.fitHeight,
-                      //   dotIncreasedColor: Color(0xffFFB500),
-                      //   images: [
-                      //     Image.asset(
-                      //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                      //     Image.asset(
-                      //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                      //     Image.asset(
-                      //         'assests/categories_screen/Coffee_Card/Coffee_Card.png'),
-                      //   ],
-                      // ),
                     ),
                   ],
                 ),
@@ -365,16 +347,20 @@ class IceCream extends StatelessWidget {
         ),
         //Drawn Path
         Padding(
-          padding: const EdgeInsets.only(left: 8.69, top: 159.69),
-          child: Image(
+          padding: const EdgeInsets.only(left: 10.69, top: 160.69),
+          child: Container(
+            height: 88,
+            child: Image(
+              fit: BoxFit.fill,
               image: AssetImage(
-                  "assests/categories_screen/Drawn_Path/Drawn_Path.png")),
+                    "assests/categories_screen/Drawn_Path/Drawn_Path.png"),),
+          ),
         ),
         //COFFEE Text
         Container(
-          padding: EdgeInsets.fromLTRB(15, 167, 15, 11),
+          padding: EdgeInsets.fromLTRB(15, 175, 15, 11),
           child: Text(
-            "COFFEE",
+            "ICECREAM",
             style: TextStyle(
               fontFamily: "Antipasto Pro",
               fontSize: 62,

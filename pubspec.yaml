@@ -67,6 +67,8 @@ flutter:
     - assests/categories_screen/TabBar_BG/
     - assests/categories_screen/TabBar_Indicator/
     - assests/categories_screen/Categories_name_with_drawn_path/
+    - assests/categories_screen/Ice_Cream_Card/
+    - assests/categories_screen/Ice_Cream_Watermark/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
