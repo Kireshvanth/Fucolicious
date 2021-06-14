@@ -60,10 +60,13 @@ class _SideNavigationBarState extends State<SideNavigationBar> {
     return Positioned(
       top: 320,
       child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.horizontal(right: Radius.circular(20)),
+            color: Colors.black),
         height: 418,
         width: 45,
         child: NavigationRail(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
           groupAlignment: 0,
           selectedIconTheme: IconThemeData(color: Colors.white),
           unselectedIconTheme: IconThemeData(color: Colors.white),
