@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:dots_indicator/dots_indicator.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  int pageIndex = 0;
+
 
   final PageController controller = PageController(initialPage: 0);
 
@@ -25,11 +25,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           PageView(
             scrollDirection: Axis.horizontal,
             controller: controller,
-            onPageChanged: (changedIndex) {
-              setState(() {
-                pageIndex = changedIndex;
-              });
-            },
+
             children: [
               //Coffee
               Stack(
@@ -293,20 +289,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 68),
-                  child: DotsIndicator(
-                    position: pageIndex.toDouble(),
-                    dotsCount: 3,
-                    decorator: DotsDecorator(
-                      color: Colors.black,
-                      activeColor: Colors.white,
-                      size: Size.square(7.0),
-                      activeSize: Size.square(11.0),
-                      shape: CircleBorder(
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 0.5,
-                        ),
-                      ),
+                  child: SmoothPageIndicator(
+                    controller: controller,
+                    count: 3,
+                    effect: ScrollingDotsEffect(
+                      activeDotColor: Color(0xffFFB500),
+                      strokeWidth: 1000,
+                      dotHeight: 9,
+                      dotWidth: 9,
+                      fixedCenter: true,
+                      dotColor: Color(0xff2D2D26),
                     ),
                   ),
                 ),
