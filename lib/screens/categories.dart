@@ -9,6 +9,7 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
 
+
   final PageController controller = PageController(initialPage: 0);
 
   @override
@@ -24,6 +25,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           PageView(
             scrollDirection: Axis.horizontal,
             controller: controller,
+
             children: [
               //Coffee
               Stack(
@@ -297,7 +299,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       dotWidth: 9,
                       fixedCenter: true,
                       dotColor: Color(0xff2D2D26),
-
                     ),
                   ),
                 ),
