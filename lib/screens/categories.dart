@@ -8,7 +8,6 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-
   int pageIndex = 0;
 
   final PageController controller = PageController(initialPage: 0);
@@ -26,9 +25,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           PageView(
             scrollDirection: Axis.horizontal,
             controller: controller,
-            onPageChanged: (changedIndex){
+            onPageChanged: (changedIndex) {
               setState(() {
-                pageIndex = changedIndex ;
+                pageIndex = changedIndex;
               });
             },
             children: [
@@ -308,7 +307,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           width: 0.5,
                         ),
                       ),
-
                     ),
                   ),
                 ),
