@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:flutter_swipable/flutter_swipable.dart';
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -9,6 +8,9 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+
+  int pageIndex = 0;
+
   final PageController controller = PageController(initialPage: 0);
 
   @override
@@ -24,6 +26,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           PageView(
             scrollDirection: Axis.horizontal,
             controller: controller,
+            onPageChanged: (changedIndex){
+              setState(() {
+                pageIndex = changedIndex ;
+              });
+            },
             children: [
               //Coffee
               Stack(
@@ -283,11 +290,28 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               children: [
                 Expanded(
                   child: Container(),
-                  flex: 34,
+                  flex: 28,
                 ),
-                Image(
-                    image:
-                        AssetImage("assests/categories_screen/Dock/Dock.png")),
+                Padding(
+                  padding: EdgeInsets.only(left: 20, right: 68),
+                  child: DotsIndicator(
+                    position: pageIndex.toDouble(),
+                    dotsCount: 3,
+                    decorator: DotsDecorator(
+                      color: Colors.black,
+                      activeColor: Colors.white,
+                      size: Size.square(7.0),
+                      activeSize: Size.square(11.0),
+                      shape: CircleBorder(
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 0.5,
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: Container(),
                   flex: 7,
