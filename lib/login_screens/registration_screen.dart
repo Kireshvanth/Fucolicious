@@ -39,7 +39,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     Firebase.initializeApp();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

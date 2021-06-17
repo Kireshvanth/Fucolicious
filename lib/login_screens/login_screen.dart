@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:git_sem_custom_food/main.dart';
 
+
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
   contentPadding:
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String email ;
   String password ;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               textAlign: TextAlign.center ,
               onChanged: (value) {
                 email = value ;
+
               },
               decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email')
             ),
@@ -96,8 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
-
           ],
         ),
       ),
