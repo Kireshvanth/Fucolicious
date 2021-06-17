@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:git_sem_custom_food/screens/categories.dart';
 import 'package:git_sem_custom_food/screens/dealsoftheday.dart';
 import 'package:git_sem_custom_food/screens/home.dart';
-import 'package:git_sem_custom_food/modules/sideNavBar.dart';
-import 'package:git_sem_custom_food/login_screens/login_screen.dart';
 import 'package:git_sem_custom_food/login_screens/welcome_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MaterialApp(
-      home: WelcomeScreen(),
+      home: FirebaseAuth.instance.currentUser == null ? WelcomeScreen() : MyApp(),
       title: "Custom Food",
       debugShowCheckedModeBanner: false,
     ),
@@ -25,6 +29,31 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  final _auth = FirebaseAuth.instance;
+  User loggedInUser ;
+
+
+  void getCurrentUser() async {
+
+    await Firebase.initializeApp();
+    try {
+      final user = await _auth.currentUser;
+      if (user != null) {
+        loggedInUser = user;
+      }
+    }
+    catch(e){
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
