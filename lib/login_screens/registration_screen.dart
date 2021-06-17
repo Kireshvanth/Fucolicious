@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:git_sem_custom_food/main.dart';
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
@@ -25,6 +28,16 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
 
+  final _auth = FirebaseAuth.instance;
+  String email;
+  String password;
+  bool showSpinner =false;
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +56,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             TextField(
               textAlign: TextAlign.center,
               keyboardType: TextInputType.emailAddress,
-              onChanged: (value) {},
+              onChanged: (value) {
+                email = value ;
+              },
               decoration:kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
             ),
             SizedBox(
@@ -52,7 +67,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             TextField(
               textAlign: TextAlign.center,
               obscureText: true,
-              onChanged: (value) {},
+              onChanged: (value) {
+                password = value ;
+              },
               decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your password'),
             ),
             SizedBox(
@@ -65,7 +82,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 color: Colors.blueAccent,
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
-                  onPressed: (){},
+                  onPressed: () async{
+                    setState(() {
+                      showSpinner = true ;
+                    });
+                    try {
+                      final newUser = await _auth.createUserWithEmailAndPassword(
+                          email: email, password: password);
+                      if (newUser != null){
+                        Navigator.push(context,MaterialPageRoute(builder:(context)=> MyApp()));
+                      }
+                      setState(() {
+                        showSpinner=false ;
+                      });
+                    }
+                    catch(e){
+                      print(e);
+                    }
+                  },
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
