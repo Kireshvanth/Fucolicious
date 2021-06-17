@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:flutter_swipable/flutter_swipable.dart';
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -9,6 +8,8 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+
+
   final PageController controller = PageController(initialPage: 0);
 
   @override
@@ -24,6 +25,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           PageView(
             scrollDirection: Axis.horizontal,
             controller: controller,
+
             children: [
               //Coffee
               Stack(
@@ -125,7 +127,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         ),
                         //-------Empty Space-----------
                         Expanded(
-                          flex: 8,
+                          flex: 9,
                           child: Container(),
                         ),
                         //-------Starbucks Watermark--------
@@ -166,20 +168,21 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                   //Drawn Path
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.69, top: 159.69),
+                    padding: EdgeInsets.only(left: 10.69, top: 159.69),
                     child: Container(
-                      height: 75,
-                      child: FittedBox(
-                        child: Image(
-                          image: AssetImage(
-                              "assests/categories_screen/Drawn_Path/Drawn_Path.png"),
-                        ),
+                      width: 217.32,
+                      height: 63.3,
+                      child: Image(
+                        fit: BoxFit.fill,
+                        image: AssetImage(
+                            "assests/categories_screen/Drawn_Path/Drawn_Path.png"),
                       ),
                     ),
                   ),
+
                   //BURGER Text
                   Container(
-                    padding: EdgeInsets.fromLTRB(22, 170, 15, 11),
+                    padding: EdgeInsets.fromLTRB(15, 167, 15, 11),
                     child: Text(
                       "BURGER",
                       style: TextStyle(
@@ -194,7 +197,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               //IceCream
               Stack(
                 children: [
-
                   //Ice cream Watermark
 
                   Container(
@@ -249,18 +251,20 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                   //Drawn Path
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.69, top: 160.69),
+                    padding: EdgeInsets.only(left: 10.69, top: 159.69),
                     child: Container(
-                      height: 88,
+                      width: 283,
+                      height: 63,
                       child: Image(
                         fit: BoxFit.fill,
                         image: AssetImage(
-                            "assests/categories_screen/Drawn_Path/Drawn_Path.png"),),
+                            "assests/categories_screen/Drawn_Path/Drawn_Path.png"),
+                      ),
                     ),
                   ),
                   //ICECREAM Text
                   Container(
-                    padding: EdgeInsets.fromLTRB(15, 175, 15, 11),
+                    padding: EdgeInsets.fromLTRB(15, 167, 15, 11),
                     child: Text(
                       "ICECREAM",
                       style: TextStyle(
@@ -281,11 +285,23 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               children: [
                 Expanded(
                   child: Container(),
-                  flex: 34,
+                  flex: 28,
                 ),
-                Image(
-                    image:
-                        AssetImage("assests/categories_screen/Dock/Dock.png")),
+                Padding(
+                  padding: EdgeInsets.only(left: 20, right: 68),
+                  child: SmoothPageIndicator(
+                    controller: controller,
+                    count: 3,
+                    effect: ScrollingDotsEffect(
+                      activeDotColor: Color(0xffFFB500),
+                      strokeWidth: 1000,
+                      dotHeight: 9,
+                      dotWidth: 9,
+                      fixedCenter: true,
+                      dotColor: Color(0xff2D2D26),
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: Container(),
                   flex: 7,
@@ -349,6 +365,3 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     );
   }
 }
-
-
-

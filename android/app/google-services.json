@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "118173765536",
+    "project_id": "custom-food-47b00",
+    "storage_bucket": "custom-food-47b00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118173765536:android:f654e5da9cc5804d5fdec5",
+        "android_client_info": {
+          "package_name": "com.PSG.git_sem_custom_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118173765536-jmboaik14ttsd17mrkrc930odn4nta2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0wdrUnQEx2s_9Vvt_dVfEofSoaWqCDkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118173765536-jmboaik14ttsd17mrkrc930odn4nta2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
