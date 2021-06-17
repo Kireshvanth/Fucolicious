@@ -3,11 +3,13 @@ import 'package:git_sem_custom_food/screens/categories.dart';
 import 'package:git_sem_custom_food/screens/dealsoftheday.dart';
 import 'package:git_sem_custom_food/screens/home.dart';
 import 'package:git_sem_custom_food/modules/sideNavBar.dart';
+import 'package:git_sem_custom_food/login_screens/login_screen.dart';
+import 'package:git_sem_custom_food/login_screens/welcome_screen.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      home: MyApp(),
+      home: WelcomeScreen(),
       title: "Custom Food",
       debugShowCheckedModeBanner: false,
     ),
