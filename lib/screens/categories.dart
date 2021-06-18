@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:flutter/material.dart";
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -7,10 +7,38 @@ class CategoriesScreen extends StatefulWidget {
   _CategoriesScreenState createState() => _CategoriesScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
+class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerProviderStateMixin{
 
 
   final PageController controller = PageController(initialPage: 0);
+
+  AnimationController animationController ;
+  Animation animation ;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = AnimationController(
+      duration: Duration(seconds: 4),
+      vsync: this,
+    );
+
+    animation = ColorTween(begin: Color(0xffFFF2D2) , end: Colors.black).animate(animationController);
+    animationController.forward();
+
+    animationController.addListener(() {
+      setState(() {});
+    });
+
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +46,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     // var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: animation.value,
       body: Stack(
         children: [
           //Coffee Elements
@@ -96,13 +124,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   //COFFEE Text
                   Container(
                     padding: EdgeInsets.fromLTRB(15, 167, 15, 11),
-                    child: Text(
-                      "COFFEE",
-                      style: TextStyle(
-                        fontFamily: "Antipasto Pro",
-                        fontSize: 62,
-                        color: Color.fromRGBO(244, 239, 227, 1),
-                      ),
+                    child: AnimatedTextKit(
+                      pause: Duration(seconds: 4),
+                      animatedTexts : [
+                        TypewriterAnimatedText(
+                          'COFFEE',
+                          textStyle: TextStyle(
+                            fontFamily: "Antipasto Pro",
+                            fontSize: 62,
+                            color: Color.fromRGBO(244, 239, 227, 1),
+                          ),
+                          speed: Duration(milliseconds: 666),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -183,13 +217,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   //BURGER Text
                   Container(
                     padding: EdgeInsets.fromLTRB(15, 167, 15, 11),
-                    child: Text(
-                      "BURGER",
-                      style: TextStyle(
-                        fontFamily: "Antipasto Pro",
-                        fontSize: 62,
-                        color: Color.fromRGBO(244, 239, 227, 1),
-                      ),
+                    child: AnimatedTextKit(
+                      pause: Duration(seconds: 4),
+                      animatedTexts : [
+                        TypewriterAnimatedText(
+                          'BURGER',
+                          textStyle: TextStyle(
+                            fontFamily: "Antipasto Pro",
+                            fontSize: 62,
+                            color: Color.fromRGBO(244, 239, 227, 1),
+                          ),
+                          speed: Duration(milliseconds: 500),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -265,13 +305,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   //ICECREAM Text
                   Container(
                     padding: EdgeInsets.fromLTRB(15, 167, 15, 11),
-                    child: Text(
-                      "ICECREAM",
-                      style: TextStyle(
-                        fontFamily: "Antipasto Pro",
-                        fontSize: 62,
-                        color: Color.fromRGBO(244, 239, 227, 1),
-                      ),
+                    child: AnimatedTextKit(
+                      pause: Duration(seconds: 4),
+                      animatedTexts : [
+                        TypewriterAnimatedText(
+                          'ICECREAM',
+                          textStyle: TextStyle(
+                            fontFamily: "Antipasto Pro",
+                            fontSize: 62,
+                            color: Color.fromRGBO(244, 239, 227, 1),
+                          ),
+                          speed: Duration(milliseconds: 375),
+                        ),
+                      ],
                     ),
                   ),
                 ],
