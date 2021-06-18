@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:git_sem_custom_food/main.dart';
+import 'package:git_sem_custom_food/login_screens/login_screen.dart';
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
@@ -90,7 +90,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       final newUser = await _auth.createUserWithEmailAndPassword(
                           email: email, password: password);
                       if (newUser != null){
-                        Navigator.push(context,MaterialPageRoute(builder:(context)=> MyApp()));
+                        Navigator.push(context,MaterialPageRoute(builder:(context)=> LoginScreen()));
                       }
                       setState(() {
                         showSpinner=false ;

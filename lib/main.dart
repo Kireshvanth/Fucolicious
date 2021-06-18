@@ -6,9 +6,7 @@ import 'package:git_sem_custom_food/login_screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
@@ -53,6 +51,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     getCurrentUser();
   }
+
 
   @override
   Widget build(BuildContext context) {

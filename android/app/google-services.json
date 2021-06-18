@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "118173765536",
-    "project_id": "custom-food-47b00",
-    "storage_bucket": "custom-food-47b00.appspot.com"
+    "project_number": "987147346511",
+    "project_id": "custom-food-app",
+    "storage_bucket": "custom-food-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:118173765536:android:f654e5da9cc5804d5fdec5",
+        "mobilesdk_app_id": "1:987147346511:android:3972f2214b7c2ae937803a",
         "android_client_info": {
-          "package_name": "com.PSG.git_sem_custom_food"
+          "package_name": "com.psg.git_sem_custom_food"
         }
       },
       "oauth_client": [
         {
-          "client_id": "118173765536-jmboaik14ttsd17mrkrc930odn4nta2s.apps.googleusercontent.com",
+          "client_id": "987147346511-nhhb1avq35d7khf1vfafa2dnhf5qaho3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD0wdrUnQEx2s_9Vvt_dVfEofSoaWqCDkE"
+          "current_key": "AIzaSyDyu4M9CTxVI3MrI2564NZe1FwSj8Tq7Vo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "118173765536-jmboaik14ttsd17mrkrc930odn4nta2s.apps.googleusercontent.com",
+              "client_id": "987147346511-nhhb1avq35d7khf1vfafa2dnhf5qaho3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
