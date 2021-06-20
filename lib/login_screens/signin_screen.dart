@@ -213,17 +213,24 @@ class _SignInScreenState extends State<SignInScreen> {
                         flex: 10,
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 39),
-                          padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: ListTile(
-                            leading: Image.asset('assests/login_screens/Google_G_Logo/Google_G_Logo.png'),
-                            title: Text(
-                              'Sign In with Google',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'GoogleSans' ,
-                              ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset('assests/login_screens/Google_G_Logo/Google_G_Logo.png'),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  'Sign In with Google',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'GoogleSans' ,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           decoration: BoxDecoration(
@@ -260,15 +267,18 @@ class _SignInScreenState extends State<SignInScreen> {
                               }
                             },
                             child: Container(
-                              width: 95,
+                              height: 42,
+                              width: 105,
                               padding: EdgeInsets.symmetric(vertical: 10,horizontal: 23),
-                              child: Text(
-                                'Sign In',
-                                style: TextStyle(
-                                  fontFamily: 'GoogleSans',
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                              child: Center(
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                    fontFamily: 'GoogleSans',
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               decoration: BoxDecoration(
@@ -311,15 +321,17 @@ class _SignInScreenState extends State<SignInScreen> {
                               Navigator.push(context,MaterialPageRoute(builder:(context)=> SignUpScreen()));
                             },
                             child: Container(
+                              height: 40,
                               width: 105,
-                              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 23),
-                              child: Text(
-                                'Sign Up',
-                                style: TextStyle(
-                                  fontFamily: 'GoogleSans',
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                              child: Center(
+                                child: Text(
+                                  'Sign Up',
+                                  style: TextStyle(
+                                    fontFamily: 'GoogleSans',
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               decoration: BoxDecoration(

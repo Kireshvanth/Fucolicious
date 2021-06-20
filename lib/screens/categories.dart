@@ -31,8 +31,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
     animationController.addListener(() {
       setState(() {});
     });
-
-
   }
 
   @override
