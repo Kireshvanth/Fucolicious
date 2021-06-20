@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:flutter/material.dart";
+import 'package:git_sem_custom_food/coffee/coffee_dashboard.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -103,9 +104,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Image(
-                                  image: AssetImage(
-                                      "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,MaterialPageRoute(builder:(context)=> CoffeeDashBoard()));
+                                  },
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                                  ),
                                 ),
                               ),
                             ],
@@ -129,12 +135,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                       animatedTexts : [
                         TypewriterAnimatedText(
                           'COFFEE',
+                          cursor: ' ',
                           textStyle: TextStyle(
                             fontFamily: "Antipasto Pro",
                             fontSize: 62,
                             color: Color.fromRGBO(244, 239, 227, 1),
                           ),
                           speed: Duration(milliseconds: 666),
+
                         ),
                       ],
                     ),
@@ -222,6 +230,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                       animatedTexts : [
                         TypewriterAnimatedText(
                           'BURGER',
+                          cursor: ' ',
                           textStyle: TextStyle(
                             fontFamily: "Antipasto Pro",
                             fontSize: 62,
@@ -310,6 +319,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                       animatedTexts : [
                         TypewriterAnimatedText(
                           'ICECREAM',
+                          cursor: ' ',
                           textStyle: TextStyle(
                             fontFamily: "Antipasto Pro",
                             fontSize: 62,

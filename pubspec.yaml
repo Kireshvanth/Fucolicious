@@ -33,6 +33,7 @@ dependencies:
   firebase_auth: ^1.4.1
   cloud_firestore: ^2.2.2
   animated_text_kit: ^4.2.1
+  bordered_text: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,13 @@ flutter:
     - assests/categories_screen/Burger_Card/
     - assests/categories_screen/Ice_Cream_Card/
     - assests/categories_screen/Ice_Cream_Watermark/
+    - assests/coffee/Button_Home/
+    - assests/coffee/Cart_Icon/
+    - assests/coffee/Drawn_Path_Price/
+    - assests/login_screens/GetStarted_BG/
+    - assests/login_screens/Google_G_Logo/
+    - assests/login_screens/Happy_meal_time/
+    - assests/login_screens/underline_path/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -101,6 +109,12 @@ flutter:
         - asset: assests/fonts/Kenyan-Coffee-Regular-Italic.ttf
           style: italic
           weight: 700
+    - family: GoogleSans
+      fonts:
+        - asset: assests/fonts/GoogleSans-Regular.ttf
+    - family: PrequelDemo
+      fonts:
+        - asset: assests/fonts/PrequelDemo-Regular.ttf
 
 
   #
