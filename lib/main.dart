@@ -34,7 +34,6 @@ class _MyAppState extends State<MyApp> {
 
 
   void getCurrentUser() async {
-
     await Firebase.initializeApp();
     try {
       final user = await _auth.currentUser;
