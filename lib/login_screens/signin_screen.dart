@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:git_sem_custom_food/login_screens/signup_screen.dart';
 import 'package:git_sem_custom_food/main.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 final kTextFieldDecoration = InputDecoration(
   hintText: 'Enter the hintText',
@@ -30,6 +32,25 @@ final kTextFieldDecoration = InputDecoration(
     ),
   ),
 );
+
+Future<UserCredential> signInWithGoogle() async {
+  final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+  final GoogleAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+      accessToken: googleAuth.accessToken
+  );
+  Fluttertoast.showToast(
+    msg: "Signed In with Google",
+    textColor: Colors.white,
+    backgroundColor: Colors.black,
+  );
+  return await FirebaseAuth.instance.signInWithCredential(credential);
+
+}
+
 
 class SignInScreen extends StatefulWidget {
 
@@ -107,6 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
           ),
+          //Fuctinality Container
           Container(
             child: SafeArea(
               child: Center(
@@ -211,36 +233,49 @@ class _SignInScreenState extends State<SignInScreen> {
                       //google sign in
                       Expanded(
                         flex: 10,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 39),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset('assests/login_screens/Google_G_Logo/Google_G_Logo.png'),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  'Sign In with Google',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'GoogleSans' ,
+                        child: GestureDetector(
+                          onTap: (){
+                            try{
+                              final user = signInWithGoogle() ;
+                              if (user != null) {
+                                Navigator.push(context,MaterialPageRoute(builder:(context)=> MyApp()));
+                              }
+                            }
+                            catch(e){
+                              print(e);
+                            }
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 39),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assests/login_screens/Google_G_Logo/Google_G_Logo.png'),
+                                  SizedBox(
+                                    width: 20,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Sign In with Google',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'GoogleSans' ,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xff7B0000),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: Color(0xff333333),
-                              width: 2.0,
-                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xff7B0000),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Color(0xff333333),
+                                width: 2.0,
+                              ),
 
+                            ),
                           ),
                         ),
                       ),
