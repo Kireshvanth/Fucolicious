@@ -33,9 +33,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
     });
   }
 
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   animationController.dispose();
+  // }
+
   @override
-  void dispose() {
-    super.dispose();
+  void deactivate() {
+    super.deactivate();
     animationController.dispose();
   }
 

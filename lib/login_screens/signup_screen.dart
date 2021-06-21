@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:git_sem_custom_food/login_screens/signin_screen.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:git_sem_custom_food/main.dart';
 
 final kTextFieldDecoration = InputDecoration(
   hintText: 'Enter the hintText',
@@ -30,6 +33,24 @@ final kTextFieldDecoration = InputDecoration(
     ),
   ),
 );
+
+Future<UserCredential> signInWithGoogle() async {
+  final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+  final GoogleAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+      accessToken: googleAuth.accessToken
+  );
+  Fluttertoast.showToast(
+    msg: "Signed In with Google",
+    textColor: Color(0xffFFB500),
+    backgroundColor: Colors.black,
+  );
+  return await FirebaseAuth.instance.signInWithCredential(credential);
+
+}
 
 class SignUpScreen extends StatefulWidget {
 
@@ -114,6 +135,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
           ),
+          //other components
           Container(
             child: SafeArea(
               child: Center(
@@ -150,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-                      //login to ur account
+                      //Create a new Account
                       Expanded(
                         flex: 4,
                         child: Padding(
@@ -241,36 +263,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       //google sign up
                       Expanded(
                         flex: 10,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 39),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset('assests/login_screens/Google_G_Logo/Google_G_Logo.png'),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  'Sign In with Google',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'GoogleSans' ,
+                        child: GestureDetector(
+                          onTap: (){
+                            try{
+                              final user = signInWithGoogle() ;
+                              if (user != null) {
+                                Navigator.push(context,MaterialPageRoute(builder:(context)=> MyApp()));
+                              }
+                            }
+                            catch(e){
+                              print(e);
+                            }
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 39),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assests/login_screens/Google_G_Logo/Google_G_Logo.png'),
+                                  SizedBox(
+                                    width: 20,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Sign In with Google',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'GoogleSans' ,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xff7B0000),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: Color(0xff333333),
-                              width: 2.0,
-                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xff7B0000),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Color(0xff333333),
+                                width: 2.0,
+                              ),
 
+                            ),
                           ),
                         ),
                       ),
