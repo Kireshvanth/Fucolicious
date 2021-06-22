@@ -87,6 +87,11 @@ flutter:
     - assests/login_screens/Google_G_Logo/
     - assests/login_screens/Happy_meal_time/
     - assests/login_screens/underline_path/
+    - assests/login_screens/Fucolicious/
+    - assests/login_screens/Background/
+    - assests/login_screens/Dashed_Rectagle/
+    - assests/login_screens/ImageToBlackFilter/
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -115,7 +120,10 @@ flutter:
           weight: 700
     - family: GoogleSans
       fonts:
-        - asset: assests/fonts/GoogleSans-Regular.ttf
+        - asset: assests/fonts/GoogleSans-Medium.ttf
+          weight: 500
+        - asset: assests/fonts/GoogleSans-Bold.ttf
+          weight: 700
     - family: PrequelDemo
       fonts:
         - asset: assests/fonts/PrequelDemo-Regular.ttf
