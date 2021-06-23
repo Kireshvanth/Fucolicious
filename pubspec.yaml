@@ -56,25 +56,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assests/categories_screen/All_Categories/
-    - assests/categories_screen/Bars_Status_Bar_Dark_Status_Bar/
-    - assests/categories_screen/BG/
-    - assests/categories_screen/Categories/
-    - assests/categories_screen/COFFEE/
     - assests/categories_screen/Coffee_Card/
     - assests/categories_screen/Coffee_Card_Watermark/
-    - assests/categories_screen/Deals_of_the_Day/
     - assests/categories_screen/Dock/
     - assests/categories_screen/Down_Arrow/
     - assests/categories_screen/Drawn_Path/
-    - assests/categories_screen/HOME/
-    - assests/categories_screen/Select_Category/
     - assests/categories_screen/Starbucks_Logo/
     - assests/categories_screen/STARBUCKS_Watermark/
-    - assests/categories_screen/Swipe_Down/
-    - assests/categories_screen/TabBar_BG/
     - assests/categories_screen/TabBar_Indicator/
-    - assests/categories_screen/Categories_name_with_drawn_path/
     - assests/categories_screen/McDonalds_Logo/
     - assests/categories_screen/McDonalds_Watermark/
     - assests/categories_screen/Burger_Card/
@@ -91,7 +80,20 @@ flutter:
     - assests/login_screens/Background/
     - assests/login_screens/Dashed_Rectagle/
     - assests/login_screens/ImageToBlackFilter/
-    
+    - assests/ice_cream/bar/
+    - assests/ice_cream/button_home/
+    - assests/ice_cream/cone/
+    - assests/ice_cream/cookies_logo/
+    - assests/ice_cream/cup/
+    - assests/ice_cream/ice_cream_bg/
+    - assests/ice_cream/ice_cream_logo/
+    - assests/ice_cream/underline_path/
+    - assests/ice_cream/walnut_logo/
+    - assests/login_screens/Fucolicious/
+    - assests/login_screens/Background/
+    - assests/login_screens/Dashed_Rectagle/
+    - assests/login_screens/ImageToBlackFilter/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -120,13 +122,23 @@ flutter:
           weight: 700
     - family: GoogleSans
       fonts:
+        - asset: assests/fonts/GoogleSans-Regular.ttf
         - asset: assests/fonts/GoogleSans-Medium.ttf
           weight: 500
         - asset: assests/fonts/GoogleSans-Bold.ttf
           weight: 700
+    - family: GoogleSans Bld
+      fonts:
+        - asset: assests/fonts/GoogleSans-Bold.ttf
     - family: PrequelDemo
       fonts:
         - asset: assests/fonts/PrequelDemo-Regular.ttf
+    - family: Ragazzi
+      fonts:
+        - asset: assests/fonts/Ragazzi-Regular.ttf
+    - family: Ragazzi ExB
+      fonts:
+        - asset: assests/fonts/Ragazzi-ExtraBold.ttf
 
 
   #
