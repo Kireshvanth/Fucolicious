@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:flutter/material.dart";
-import 'package:git_sem_custom_food/coffee/coffee_dashboard.dart';
+import 'package:git_sem_custom_food/screens/icecream/ice_cream_customisation.dart';
+import 'coffee/coffee_dashboard.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -291,9 +292,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Image(
-                                  image: AssetImage(
-                                      "assests/categories_screen/Ice_Cream_Card/Ice_Cream_Card.png"),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,MaterialPageRoute(builder:(context)=> IceCreamCustomisation()));
+                                  },
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assests/categories_screen/Ice_Cream_Card/Ice_Cream_Card.png"),
+                                  ),
                                 ),
                               ),
                             ],

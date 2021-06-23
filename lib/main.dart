@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:git_sem_custom_food/screens/categories.dart';
 import 'package:git_sem_custom_food/screens/dealsoftheday.dart';
 import 'package:git_sem_custom_food/screens/home.dart';
-import 'package:git_sem_custom_food/login_screens/welcome_screen.dart';
+import 'package:git_sem_custom_food/screens/login_screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'coffee/coffee_dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +27,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+    _selectedIndex=0 ;
+  }
+
 
   final _auth = FirebaseAuth.instance;
   User loggedInUser ;
