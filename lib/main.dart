@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:git_sem_custom_food/screens/burger/burger_dashboard.dart';
 import 'package:git_sem_custom_food/screens/categories.dart';
 import 'package:git_sem_custom_food/screens/dealsoftheday.dart';
 import 'package:git_sem_custom_food/screens/home.dart';
+import 'package:git_sem_custom_food/screens/icecream/ice_cream_customisation.dart';
 import 'screens/login_screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,7 +16,7 @@ void main() async {
     MaterialApp(
       home:
           // FirebaseAuth.instance.currentUser == null ? WelcomeScreen() : MyApp(),
-          MyApp(),
+          BurgerDashBoard(),
       title: "Custom Food",
       debugShowCheckedModeBanner: false,
     ),
@@ -30,6 +32,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   final _auth = FirebaseAuth.instance;
   User loggedInUser;
 
@@ -49,7 +52,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     getCurrentUser();
+    _selectedIndex = 0;
   }
+
 
   @override
   Widget build(BuildContext context) {
