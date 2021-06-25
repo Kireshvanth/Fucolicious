@@ -38,6 +38,7 @@ dependencies:
   google_sign_in: ^5.0.4
   fluttertoast: ^8.0.7
   modal_progress_hud: ^0.1.3
+  list_wheel_scroll_view_x: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +94,18 @@ flutter:
     - assests/login_screens/Background/
     - assests/login_screens/Dashed_Rectagle/
     - assests/login_screens/ImageToBlackFilter/
+    - assests/burger/burger_dashboard/bestseller_watermark/
+    - assests/burger/burger_dashboard/Button_Home/
+    - assests/burger/burger_dashboard/Cart_icon/
+    - assests/burger/burger_dashboard/flame_grilled_watermark/
+    - assests/burger/burger_dashboard/rodeo_burger/
+    - assests/burger/burger_dashboard/Underline_Path/
+    - assests/burger/burger_dashboard/whooper/
+    - assests/burger/burger_dashboard/Fire_BG/
+    - assests/burger/burger_dashboard/ImageToBGFilter/
+    - assests/burger/burger_dashboard/McDonald_BG_Image/
+    - assests/burger/burger_dashboard/McDonald_Burger_Logo/
+    - assests/burger/burger_dashboard/must_try/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

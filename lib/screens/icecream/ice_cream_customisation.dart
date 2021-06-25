@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:git_sem_custom_food/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-final Border kactiveintensityBorder =
-    Border.all(color: Color(0xffFFD56D), width: 3);
+final Border kactiveintensityBorder = Border.all(color: Color(0xffFFD56D), width: 3);
 final Border kinactiveintensityBorder = Border.all(color: Colors.transparent);
+final _auth = FirebaseAuth.instance;
 
 class IceCreamCustomisation extends StatefulWidget {
   @override
@@ -13,6 +16,32 @@ class IceCreamCustomisation extends StatefulWidget {
 }
 
 class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
+
+  final _firestore = FirebaseFirestore.instance;
+  User loggedInUser ;
+  String email ;
+  String time ;
+
+
+  Future<void> gettingEmail() async {
+    try{
+      if(_auth != null){
+        final user = await _auth.currentUser;
+        email = user.email ;
+      }
+      if(await GoogleSignIn().isSignedIn() == true){
+        await GoogleSignIn().signOut() ;
+        final user = await GoogleSignIn().currentUser;
+        email = user.email ;
+      }
+
+    }
+    catch(e){
+      print(e);
+    }
+  }
+
+
   int selectedIntensity;
   String selectedSyrupValue;
   String selectedVariation;
@@ -29,8 +58,17 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
   bool _checkedCherry = false;
   List<String> selectedTopping = [];
 
+
+  @override
+  void initState() {
+    super.initState();
+    gettingEmail() ;
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Color(0xffF2F3F0),
       body: SafeArea(
@@ -815,15 +853,20 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
                           height: 35,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            print('Selected Intensity : $selectedIntensity');
-                            print('Selected Syrup Value : $selectedSyrupValue');
-                            print('Selected Variation : $selectedVariation');
-                            print('Cost : \$$cost');
-                            print('Quantity : $quantity');
-                            print(
-                                'Selected Serving Type : $selectedServingType');
-                            print('Selected Toppings : $selectedTopping');
+                          onTap: () async {
+                            var time = DateTime.now().toString() ;
+
+                            _firestore.collection('ibaco').add({
+                              'Intensity' :  selectedIntensity ,
+                              'Quantity' : quantity,
+                              'Serving_Type' : selectedServingType,
+                              'Syrup' : selectedSyrupValue ,
+                              'Toppings' : selectedTopping,
+                              'Total Cost' : '\$${cost * quantity}',
+                              'User' : '$email',
+                              'Variation' : 'Matcha $selectedVariation' ,
+                              'date_time' : time ,
+                            });
                           },
                           child: Container(
                             child: Stack(
@@ -885,8 +928,8 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
                     child: Center(
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) => MyApp()));
+                          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyApp()));
+                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
                         },
                         child: Image.asset(
                             'assests/ice_cream/button_home/button_home.png'),
