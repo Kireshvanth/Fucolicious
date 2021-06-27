@@ -1014,28 +1014,40 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
                                   ),
                                   TextButton(
                                     onPressed: () async{
-                                      var time = DateTime.now().toString() ;
+                                      if(_locationData != null){
+                                        var time = DateTime.now().toString() ;
 
-                                      await _firestore.collection('ibaco').add({
-                                        'Intensity' :  selectedIntensity ,
-                                        'Quantity' : quantity,
-                                        'Serving_Type' : selectedServingType,
-                                        'Syrup' : selectedSyrupValue ,
-                                        'Toppings' : selectedTopping,
-                                        'Total Cost' : '\$${cost * quantity}',
-                                        'User' : '$email',
-                                        'Variation' : 'Matcha $selectedVariation' ,
-                                        'date_time' : time ,
-                                        'Latitude' : _locationData.latitude ,
-                                        'Longitude' : _locationData.longitude ,
-                                      });
-                                      await Fluttertoast.showToast(
-                                        msg: "Placed Order Successfully",
-                                        textColor: Color(0xffF8AD2C),
-                                        backgroundColor: Colors.white,
-                                      );
+                                        await _firestore.collection('ibaco').add({
+                                          'Intensity' :  selectedIntensity ,
+                                          'Quantity' : quantity,
+                                          'Serving_Type' : selectedServingType,
+                                          'Syrup' : selectedSyrupValue ,
+                                          'Toppings' : selectedTopping,
+                                          'Total Cost' : '\$${cost * quantity}',
+                                          'User' : '$email',
+                                          'Variation' : 'Matcha $selectedVariation' ,
+                                          'date_time' : time ,
+                                          'Latitude' : _locationData.latitude ,
+                                          'Longitude' : _locationData.longitude ,
+                                        });
+                                        await Fluttertoast.showToast(
+                                          msg: "Placed Order Successfully",
+                                          textColor: Color(0xffF8AD2C),
+                                          backgroundColor: Colors.white,
+                                        );
 
-                                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+                                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+
+                                      }
+                                      else{
+                                        await Fluttertoast.showToast(
+                                          msg: "Turn on your location to place your order",
+                                          textColor: Color(0xffF8AD2C),
+                                          backgroundColor: Colors.white,
+                                        );
+                                        Navigator.pop(context);
+                                      }
+
                                     },
                                     child: Container(
                                       margin: EdgeInsets.only(left: 4, top: 4),
