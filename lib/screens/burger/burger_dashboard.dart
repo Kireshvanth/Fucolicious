@@ -15,6 +15,9 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
     double screenHeight = MediaQuery.of(context).size.height ;
     double screenWidth = MediaQuery.of(context).size.width ;
 
+    ScrollController _controller1 ;
+    ScrollController _controller2 ;
+
     return Scaffold(
       backgroundColor: Color(0xffFFFDF9),
       body: SafeArea(
@@ -169,6 +172,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                         tag: 'burger',
                         child: Container(
                           child: ListWheelScrollViewX(
+                            controller: _controller1,
                             diameterRatio: 4,
                             itemExtent: 170,
                             useMagnifier: true,
@@ -245,6 +249,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                       },
                       child: Container(
                         child: ListWheelScrollViewX(
+                          controller: _controller2,
                           itemExtent: 200,
                           useMagnifier: true,
                           magnification: 1.5,
