@@ -131,7 +131,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                     ),
                   ),
                   Expanded(
-                    flex: 12,
+                    flex: 11,
                     child: SizedBox(),
                   ),
                   Expanded(
@@ -160,7 +160,11 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                         ),
                       ),
                     ),
-                    flex: 3,
+                    flex: 5,
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: SizedBox(),
                   ),
                   //cards
                   Expanded(
@@ -183,6 +187,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                                 image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
                                 cost: '\$10',
                                 itemName: 'Rodeo Burger',
+                                mustTry: true,
                               ),
                               UsableCard(
                                 image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
@@ -207,11 +212,6 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                     ),
                     flex: 26,
                   ),
-                  Expanded(
-                    flex: 4,
-                    child: SizedBox(),
-                  ),
-
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.only(left: 20),
@@ -239,7 +239,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                         ),
                       ),
                     ),
-                    flex: 3,
+                    flex: 5,
                   ),
                   //cards
                   Expanded(
@@ -259,6 +259,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                               image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
                               cost: '\$10',
                               itemName: 'Whooper',
+                              mustTry: true,
                             ),
                             UsableCard(
                               image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),

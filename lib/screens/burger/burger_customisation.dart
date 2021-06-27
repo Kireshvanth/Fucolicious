@@ -3029,28 +3029,42 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                               ),
                                               TextButton(
                                                 onPressed: () async {
-                                                  var time = DateTime.now().toString() ;
-                                                  _firestore.collection('McDonalds').add({
-                                                    'Bun' : '${_selectedBun.replaceAll('\n', ' ')}' ,
-                                                    'Patty' : '${_selectedPatty.replaceAll('\n', ' ')}' ,
-                                                    'Lettuce' : '${_selectedLettuce.replaceAll('\n', ' ')}',
-                                                    'Butter' : '${_selectedButter.replaceAll('\n', ' ')}' ,
-                                                    'Cheese' : '${_selectedCheese.replaceAll('\n', ' ')}' ,
-                                                    'Egg' : '${_selectedEgg.replaceAll('\n', ' ')}' ,
-                                                    'Fries' : '${_selectedFries.replaceAll('\n', ' ')}' ,
-                                                    'Total Cost' : '\$10' ,
-                                                    'User' : '$email',
-                                                    'date_time' : time ,
-                                                    'Latitude' : _locationData.latitude ,
-                                                    'Longitude' : _locationData.longitude ,
-                                                  });
-                                                  await Fluttertoast.showToast(
-                                                    msg: "Placed Order Successfully",
-                                                    textColor: Color(0xffF8AD2C),
-                                                    backgroundColor: Colors.white,
-                                                  );
+                                                  if(_locationData != null){
 
-                                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+                                                    var time = DateTime.now().toString() ;
+                                                    _firestore.collection('McDonalds').add({
+                                                      'Bun' : '${_selectedBun.replaceAll('\n', ' ')}' ,
+                                                      'Patty' : '${_selectedPatty.replaceAll('\n', ' ')}' ,
+                                                      'Lettuce' : '${_selectedLettuce.replaceAll('\n', ' ')}',
+                                                      'Butter' : '${_selectedButter.replaceAll('\n', ' ')}' ,
+                                                      'Cheese' : '${_selectedCheese.replaceAll('\n', ' ')}' ,
+                                                      'Egg' : '${_selectedEgg.replaceAll('\n', ' ')}' ,
+                                                      'Fries' : '${_selectedFries.replaceAll('\n', ' ')}' ,
+                                                      'Total Cost' : '\$10' ,
+                                                      'User' : '$email',
+                                                      'date_time' : time ,
+                                                      'Latitude' : _locationData.latitude ,
+                                                      'Longitude' : _locationData.longitude ,
+                                                    });
+
+                                                    await Fluttertoast.showToast(
+                                                      msg: "Placed Order Successfully",
+                                                      textColor: Color(0xffF8AD2C),
+                                                      backgroundColor: Colors.white,
+                                                    );
+
+                                                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+
+                                                  }
+                                                  else{
+                                                    await Fluttertoast.showToast(
+                                                      msg: "Turn on your location to place your order",
+                                                      textColor: Color(0xffF8AD2C),
+                                                      backgroundColor: Colors.white,
+                                                    );
+                                                    Navigator.pop(context);
+                                                  }
+
                                                 },
                                                 child: Container(
                                                   margin: EdgeInsets.only(left: 4, top: 4),
