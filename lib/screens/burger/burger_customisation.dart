@@ -473,7 +473,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                             Expanded(
                               flex: 54,
                               child: Container(
-                                padding: EdgeInsets.only(left: screenWidth * 0.40),
+                                padding: EdgeInsets.only(left: screenWidth * 0.45),
                                 // height: screenHeight * 0.5 ,
                                 child: Center(
                                   child: ListWheelScrollView(
@@ -484,7 +484,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                     },
                                     diameterRatio: 2,
                                     itemExtent: 200,
-                                    offAxisFraction: -2,
+                                    offAxisFraction: -3.5,
                                     children: [
                                       Container(
                                         width: 120,
@@ -874,7 +874,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                             Expanded(
                               flex: 54,
                               child: Container(
-                                padding: EdgeInsets.only(left: screenWidth * 0.40),
+                                padding: EdgeInsets.only(left: screenWidth * 0.45),
                                 // height: screenHeight * 0.5 ,
                                 child: Center(
                                   child: ListWheelScrollView(
@@ -885,7 +885,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                     },
                                     diameterRatio: 2,
                                     itemExtent: 200,
-                                    offAxisFraction: -2,
+                                    offAxisFraction: -3.5,
                                     children: [
                                       Container(
                                         width: 120,
@@ -1305,7 +1305,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                             Expanded(
                               flex: 54,
                               child: Container(
-                                padding: EdgeInsets.only(left: screenWidth * 0.40),
+                                padding: EdgeInsets.only(left: screenWidth * 0.45),
                                 // height: screenHeight * 0.5 ,
                                 child: Center(
                                   child: ListWheelScrollView(
@@ -1316,7 +1316,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                     },
                                     diameterRatio: 2,
                                     itemExtent: 200,
-                                    offAxisFraction: -2,
+                                    offAxisFraction: -3.5,
                                     children: [
                                       Container(
                                         width: 120,
@@ -1691,7 +1691,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                             Expanded(
                               flex: 54,
                               child: Container(
-                                padding: EdgeInsets.only(left: screenWidth * 0.40),
+                                padding: EdgeInsets.only(left: screenWidth * 0.45),
                                 // height: screenHeight * 0.5 ,
                                 child: Center(
                                   child: ListWheelScrollView(
@@ -1702,7 +1702,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                     },
                                     diameterRatio: 2,
                                     itemExtent: 200,
-                                    offAxisFraction: -2,
+                                    offAxisFraction: -3.5,
                                     children: [
                                       Container(
                                         width: 120,
@@ -2092,7 +2092,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                             Expanded(
                               flex: 54,
                               child: Container(
-                                padding: EdgeInsets.only(left: screenWidth * 0.40),
+                                padding: EdgeInsets.only(left: screenWidth * 0.45),
                                 // height: screenHeight * 0.5 ,
                                 child: Center(
                                   child: ListWheelScrollView(
@@ -2103,7 +2103,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                     },
                                     diameterRatio: 2,
                                     itemExtent: 200,
-                                    offAxisFraction: -2,
+                                    offAxisFraction: -3.5,
                                     children: [
                                       Container(
                                         width: 120,
@@ -2523,7 +2523,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                             Expanded(
                               flex: 54,
                               child: Container(
-                                padding: EdgeInsets.only(left: screenWidth * 0.40),
+                                padding: EdgeInsets.only(left: screenWidth * 0.45),
                                 // height: screenHeight * 0.5 ,
                                 child: Center(
                                   child: ListWheelScrollView(
@@ -2534,7 +2534,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                     },
                                     diameterRatio: 2,
                                     itemExtent: 200,
-                                    offAxisFraction: -2,
+                                    offAxisFraction: -3.5,
                                     children: [
                                       Container(
                                         width: 120,
@@ -3146,7 +3146,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                             Expanded(
                               flex: 54,
                               child: Container(
-                                padding: EdgeInsets.only(left: screenWidth * 0.40),
+                                padding: EdgeInsets.only(left: screenWidth * 0.45),
                                 // height: screenHeight * 0.5 ,
                                 child: Center(
                                   child: ListWheelScrollView(
@@ -3157,7 +3157,7 @@ class _BurgerCustomisationState extends State<BurgerCustomisation> {
                                     },
                                     diameterRatio: 2,
                                     itemExtent: 200,
-                                    offAxisFraction: -2,
+                                    offAxisFraction: -3.5,
                                     children: [
                                       Container(
                                         width: 120,
