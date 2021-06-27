@@ -23,7 +23,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
     super.initState();
 
     animationController = AnimationController(
-      duration: Duration(seconds: 4),
+      duration: Duration(seconds: 2),
       vsync: this,
     );
 
@@ -147,7 +147,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                             fontSize: 62,
                             color: Color.fromRGBO(244, 239, 227, 1),
                           ),
-                          speed: Duration(milliseconds: 666),
+                          speed: Duration(milliseconds: 300),
 
                         ),
                       ],
@@ -247,7 +247,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                             fontSize: 62,
                             color: Color.fromRGBO(244, 239, 227, 1),
                           ),
-                          speed: Duration(milliseconds: 500),
+                          speed: Duration(milliseconds: 300),
                         ),
                       ],
                     ),
@@ -342,7 +342,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                             fontSize: 62,
                             color: Color.fromRGBO(244, 239, 227, 1),
                           ),
-                          speed: Duration(milliseconds: 375),
+                          speed: Duration(milliseconds: 250),
                         ),
                       ],
                     ),

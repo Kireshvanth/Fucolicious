@@ -17,7 +17,7 @@ void main() async {
     MaterialApp(
       home:
           // FirebaseAuth.instance.currentUser == null ? WelcomeScreen() : MyApp(),
-          MyApp(),
+          CategoriesScreen(),
       title: "Custom Food",
       debugShowCheckedModeBanner: false,
     ),
