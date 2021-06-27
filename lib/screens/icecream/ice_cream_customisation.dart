@@ -5,10 +5,12 @@ import 'package:git_sem_custom_food/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:location/location.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-final Border kactiveintensityBorder = Border.all(color: Color(0xffFFD56D), width: 3);
-final Border kinactiveintensityBorder = Border.all(color: Colors.transparent);
-final _auth = FirebaseAuth.instance;
+final Border kactiveintensityBorder = Border.all(color: Color(0xffFFD56D), width: 3) ;
+final Border kinactiveintensityBorder = Border.all(color: Colors.transparent) ;
+final _auth = FirebaseAuth.instance ;
 
 class IceCreamCustomisation extends StatefulWidget {
   @override
@@ -21,6 +23,7 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
   User loggedInUser ;
   String email ;
   String time ;
+  LocationData _locationData;
 
 
   Future<void> gettingEmail() async {
@@ -34,6 +37,39 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
         final user = await GoogleSignIn().currentUser;
         email = user.email ;
       }
+
+    }
+    catch(e){
+      print(e);
+    }
+  }
+
+
+  Future<void> getCurrentLocation() async {
+    try{
+      Location location =  new Location();
+
+      bool _serviceEnabled;
+      PermissionStatus _permissionGranted;
+      // LocationData _locationData;
+
+      _serviceEnabled = await location.serviceEnabled();
+      if (!_serviceEnabled) {
+        _serviceEnabled = await location.requestService();
+        if (!_serviceEnabled) {
+          return;
+        }
+      }
+
+      _permissionGranted = await location.hasPermission();
+      if (_permissionGranted == PermissionStatus.denied) {
+        _permissionGranted = await location.requestPermission();
+        if (_permissionGranted != PermissionStatus.granted) {
+          return;
+        }
+      }
+
+      _locationData = await location.getLocation();
 
     }
     catch(e){
@@ -63,6 +99,7 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
   void initState() {
     super.initState();
     gettingEmail() ;
+    getCurrentLocation() ;
 
   }
 
@@ -853,20 +890,181 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
                           height: 35,
                         ),
                         GestureDetector(
-                          onTap: () async {
-                            var time = DateTime.now().toString() ;
+                          onTap: () {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (_)=> AlertDialog(
+                                elevation: 15,
+                                title: Text('Order to be placed'),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Variation : ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('Matcha $selectedVariation'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Serving_Type :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedServingType'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Intensity :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedIntensity'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Scoop :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$quantity'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Toppings :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text('$selectedTopping'),
+                                        ),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Syrup :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedSyrupValue'),
+                                      ],
+                                    ) ,
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Total Cost :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          '\$${cost * quantity}',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ) ,
 
-                            _firestore.collection('ibaco').add({
-                              'Intensity' :  selectedIntensity ,
-                              'Quantity' : quantity,
-                              'Serving_Type' : selectedServingType,
-                              'Syrup' : selectedSyrupValue ,
-                              'Toppings' : selectedTopping,
-                              'Total Cost' : '\$${cost * quantity}',
-                              'User' : '$email',
-                              'Variation' : 'Matcha $selectedVariation' ,
-                              'date_time' : time ,
-                            });
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.pop(context) ;
+                                    },
+                                    child: Text(
+                                      'Cancel',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: 'GoogleSans Bld',
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async{
+                                      var time = DateTime.now().toString() ;
+
+                                      await _firestore.collection('ibaco').add({
+                                        'Intensity' :  selectedIntensity ,
+                                        'Quantity' : quantity,
+                                        'Serving_Type' : selectedServingType,
+                                        'Syrup' : selectedSyrupValue ,
+                                        'Toppings' : selectedTopping,
+                                        'Total Cost' : '\$${cost * quantity}',
+                                        'User' : '$email',
+                                        'Variation' : 'Matcha $selectedVariation' ,
+                                        'date_time' : time ,
+                                        'Latitude' : _locationData.latitude ,
+                                        'Longitude' : _locationData.longitude ,
+                                      });
+                                      await Fluttertoast.showToast(
+                                        msg: "Placed Order Successfully",
+                                        textColor: Color(0xffF8AD2C),
+                                        backgroundColor: Colors.white,
+                                      );
+
+                                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(left: 4, top: 4),
+                                      height: 30,
+                                      width: 75,
+                                      child: Center(
+                                        child: Text(
+                                          'Confirm',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'GoogleSans Bld',
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffFEDA92),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(7),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+
+
                           },
                           child: Container(
                             child: Stack(
@@ -928,7 +1126,6 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
                     child: Center(
                       child: GestureDetector(
                         onTap: () {
-                          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyApp()));
                           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
                         },
                         child: Image.asset(

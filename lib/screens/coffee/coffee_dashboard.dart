@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bordered_text/bordered_text.dart';
+import 'package:git_sem_custom_food/main.dart';
+
 
 class CoffeeDashBoard extends StatefulWidget {
   @override
@@ -266,7 +268,12 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                 ),
                 Expanded(
                   child: Center(
-                    child: Image.asset('assests/coffee/Button_Home/button_home.png'),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+                      },
+                      child: Image.asset('assests/coffee/Button_Home/button_home.png'),
+                    ),
                   ),
                   flex: 8,
                 ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:git_sem_custom_food/screens/burger/burger_customisation.dart';
 import 'package:list_wheel_scroll_view_x/list_wheel_scroll_view_x.dart';
+import 'package:git_sem_custom_food/main.dart';
 
 class BurgerDashBoard extends StatefulWidget {
   @override
@@ -113,6 +115,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                         children: [
                           GestureDetector(
                             onTap: (){
+                              Navigator.pop(context);
                             },
                             child: Icon(
                               Icons.arrow_back,
@@ -158,36 +161,44 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                   ),
                   //cards
                   Expanded(
-                    child: Container(
-                      child: ListWheelScrollViewX(
-                        diameterRatio: 4,
-                        itemExtent: 170,
-                        useMagnifier: true,
-                        magnification: 1.5,
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
-                            cost: '\$10',
-                            itemName: 'Rodeo Burger',
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder:(context)=> BurgerCustomisation()));
+                      },
+                      child: Hero(
+                        tag: 'burger',
+                        child: Container(
+                          child: ListWheelScrollViewX(
+                            diameterRatio: 4,
+                            itemExtent: 170,
+                            useMagnifier: true,
+                            magnification: 1.5,
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              UsableCard(
+                                image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
+                                cost: '\$10',
+                                itemName: 'Rodeo Burger',
+                              ),
+                              UsableCard(
+                                image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
+                                cost: '\$10',
+                                itemName: 'Whooper',
+                                mustTry: true,
+                              ),
+                              UsableCard(
+                                image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
+                                cost: '\$10',
+                                itemName: 'Rodeo Burger',
+                              ),
+                              UsableCard(
+                                image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
+                                cost: '\$10',
+                                itemName: 'Whooper',
+                              ),
+                            ],
                           ),
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
-                            cost: '\$10',
-                            itemName: 'Whooper',
-                            mustTry: true,
-                          ),
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
-                            cost: '\$10',
-                            itemName: 'Rodeo Burger',
-                          ),
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
-                            cost: '\$10',
-                            itemName: 'Whooper',
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                     flex: 26,
@@ -228,35 +239,40 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                   ),
                   //cards
                   Expanded(
-                    child: Container(
-                      child: ListWheelScrollViewX(
-                        itemExtent: 200,
-                        useMagnifier: true,
-                        magnification: 1.5,
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
-                            cost: '\$10',
-                            itemName: 'Whooper',
-                          ),
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
-                            cost: '\$10',
-                            itemName: 'Rodeo Burger',
-                            mustTry: true,
-                          ),
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
-                            cost: '\$20',
-                            itemName: 'Rodeo Burger',
-                          ),
-                          UsableCard(
-                            image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
-                            cost: '\$10',
-                            itemName: 'Whooper',
-                          ),
-                        ],
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder:(context)=> BurgerCustomisation()));
+                      },
+                      child: Container(
+                        child: ListWheelScrollViewX(
+                          itemExtent: 200,
+                          useMagnifier: true,
+                          magnification: 1.5,
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            UsableCard(
+                              image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
+                              cost: '\$10',
+                              itemName: 'Whooper',
+                            ),
+                            UsableCard(
+                              image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
+                              cost: '\$10',
+                              itemName: 'Rodeo Burger',
+                              mustTry: true,
+                            ),
+                            UsableCard(
+                              image: Image.asset('assests/burger/burger_dashboard/rodeo_burger/rodeo_burger.png'),
+                              cost: '\$20',
+                              itemName: 'Rodeo Burger',
+                            ),
+                            UsableCard(
+                              image: Image.asset('assests/burger/burger_dashboard/whooper/whooper.png'),
+                              cost: '\$10',
+                              itemName: 'Whooper',
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     flex: 30,
@@ -279,7 +295,12 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                   ),
                   Expanded(
                     child: Center(
-                      child: Image.asset('assests/burger/burger_dashboard/Button_Home/button-home.png'),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+                        },
+                        child: Image.asset('assests/burger/burger_dashboard/Button_Home/button-home.png'),
+                      ),
                     ),
                     flex: 8,
                   ),
@@ -298,9 +319,9 @@ class UsableCard extends StatelessWidget {
   final Widget image ;
   final String cost ;
   final String itemName ;
-  bool mustTry = false ;
+  bool mustTry ;
 
-  UsableCard({@required this.image,@required this.cost , @required this.itemName , this.mustTry});
+  UsableCard({@required this.image,@required this.cost , @required this.itemName , this.mustTry });
 
   @override
   Widget build(BuildContext context) {
@@ -328,7 +349,7 @@ class UsableCard extends StatelessWidget {
                 ),
                 mustTry==true
                     ? Padding(padding: EdgeInsets.only(left: 10 ,top: 20), child: Image.asset('assests/burger/burger_dashboard/must_try/must_try_image.png'),)
-                    : Container(color: Colors.transparent,)
+                    : Container(color: Colors.transparent,),
               ],
             ),
           ),
@@ -350,7 +371,14 @@ class UsableCard extends StatelessWidget {
           Expanded(
             flex: 5,
             child: Center(
-              child: Image.asset('assests/burger/burger_dashboard/Underline_Path/Underline_Path.png'),
+              child: Container(
+                width: 40,
+                height: 7,
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Image.asset('assests/burger/burger_dashboard/Underline_Path/Underline_Path.png'),
+                ),
+              ),
             ),
           ),
           Expanded(

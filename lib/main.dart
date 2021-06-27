@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:git_sem_custom_food/screens/burger/burger_customisation.dart';
 import 'package:git_sem_custom_food/screens/burger/burger_dashboard.dart';
 import 'package:git_sem_custom_food/screens/categories.dart';
 import 'package:git_sem_custom_food/screens/dealsoftheday.dart';
@@ -16,7 +17,7 @@ void main() async {
     MaterialApp(
       home:
           // FirebaseAuth.instance.currentUser == null ? WelcomeScreen() : MyApp(),
-          BurgerDashBoard(),
+          MyApp(),
       title: "Custom Food",
       debugShowCheckedModeBanner: false,
     ),
@@ -50,9 +51,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    super.initState();
-    getCurrentUser();
-    _selectedIndex = 0;
+    super.initState() ;
+    getCurrentUser() ;
+    _selectedIndex = 0 ;
   }
 
 

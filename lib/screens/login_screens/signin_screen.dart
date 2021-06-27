@@ -45,8 +45,8 @@ Future<UserCredential> signInWithGoogle() async {
       idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
   Fluttertoast.showToast(
     msg: "Signed In with Google",
-    textColor: Colors.white,
-    backgroundColor: Colors.black,
+    textColor: Colors.black,
+    backgroundColor: Colors.white,
   );
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
