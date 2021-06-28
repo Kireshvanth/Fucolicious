@@ -176,6 +176,7 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                         tag: 'burger',
                         child: Container(
                           child: ListWheelScrollViewX(
+
                             controller: _controller1,
                             diameterRatio: 4,
                             itemExtent: 170,
