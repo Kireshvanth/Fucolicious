@@ -159,6 +159,16 @@ flutter:
     - assests/coffee/coffee_customisation_two/sugar_selected_bg/
     - assests/coffee/coffee_customisation_two/click_on_machine/
     - assests/coffee/Coffee1/
+    - assests/deals_of_the_day/bg_watermark/
+    - assests/deals_of_the_day/card/
+    - assests/deals_of_the_day/drawn_path/
+    - assests/deals_of_the_day/sign_out/
+    - assests/home/BG_watermark_1/
+    - assests/home/Voice_Assistant/
+    - assests/home/Fucolicious_Logo/
+    - assests/deals_of_the_day/lines/
+    - assests/deals_of_the_day/Customize_Button/
+    - assests/home/Scroll_Group/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
