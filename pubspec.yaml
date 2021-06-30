@@ -157,6 +157,8 @@ flutter:
     - assests/coffee/coffee_customisation_two/Swipe_Up_or_Down_Asset_temp/
     - assests/coffee/coffee_customisation_two/caffeine_selected_bg/
     - assests/coffee/coffee_customisation_two/sugar_selected_bg/
+    - assests/coffee/coffee_customisation_two/click_on_machine/
+    - assests/coffee/Coffee1/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

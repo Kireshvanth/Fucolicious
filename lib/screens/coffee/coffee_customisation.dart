@@ -1,8 +1,13 @@
-import 'package:dotted_border/dotted_border.dart';
-import 'package:dotted_line/dotted_line.dart';
-import 'package:flutter/material.dart';
-import 'package:fab_circular_menu/fab_circular_menu.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:dotted_border/dotted_border.dart' ;
+import 'package:dotted_line/dotted_line.dart' ;
+import 'package:flutter/material.dart' ;
+import 'package:sleek_circular_slider/sleek_circular_slider.dart' ;
+import 'package:cloud_firestore/cloud_firestore.dart' ;
+import 'package:firebase_auth/firebase_auth.dart' ;
+import 'package:google_sign_in/google_sign_in.dart' ;
+import 'package:location/location.dart' ;
+import 'package:fluttertoast/fluttertoast.dart' ;
+import 'package:git_sem_custom_food/main.dart';
 
 
 List milkTypeAssetList = [
@@ -16,6 +21,7 @@ List sugarTypeAssetList = [
   'assests/coffee/coffee_customisation_two/cane/cane.png',
   'assests/coffee/coffee_customisation_two/honey/honey.png',
 ];
+final _auth = FirebaseAuth.instance ;
 
 
 
@@ -27,7 +33,65 @@ class CoffeeCustomisation extends StatefulWidget {
 
 class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
 
-  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
+  final _firestore = FirebaseFirestore.instance;
+  User loggedInUser ;
+  String email ;
+  String time ;
+  LocationData _locationData;
+
+
+  Future<void> gettingEmail() async {
+    try{
+      if(_auth != null){
+        final user = await _auth.currentUser;
+        email = user.email ;
+      }
+      if(await GoogleSignIn().isSignedIn() == true){
+        await GoogleSignIn().signOut() ;
+        final user = await GoogleSignIn().currentUser;
+        email = user.email ;
+      }
+
+    }
+    catch(e){
+      print(e);
+    }
+  }
+
+
+  Future<void> getCurrentLocation() async {
+    try{
+      Location location =  new Location();
+
+      bool _serviceEnabled;
+      PermissionStatus _permissionGranted;
+      // LocationData _locationData;
+
+      _serviceEnabled = await location.serviceEnabled();
+      if (!_serviceEnabled) {
+        _serviceEnabled = await location.requestService();
+        if (!_serviceEnabled) {
+          return;
+        }
+      }
+
+      _permissionGranted = await location.hasPermission();
+      if (_permissionGranted == PermissionStatus.denied) {
+        _permissionGranted = await location.requestPermission();
+        if (_permissionGranted != PermissionStatus.granted) {
+          return;
+        }
+      }
+
+      _locationData = await location.getLocation();
+
+    }
+    catch(e){
+      print(e);
+    }
+  }
+
+
   double _milkTypeOpacity = 0 ;
   double _sugarTypeOpacity = 0 ;
   double _sugarLevelOpacity = 0 ;
@@ -39,14 +103,20 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
   String selectedTemperature = 'Normal';
   String selectedSugarLevel = 'No Sugar' ;
   String selectedCaffeineLevel = 'Very Light' ;
-
-
   String selectedMilkType = 'Almond';
   String selectedSugarType = 'White' ;
+  String selectedSyrup = 'Caramel Syrup';
+  List selectedToppings =[] ;
 
 
   double _currentSliderValueNumber = 1 ;
 
+  @override
+  void initState() {
+    super.initState();
+    gettingEmail() ;
+    getCurrentLocation() ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,9 +172,14 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.white,
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.pop(context) ;
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 Image.asset('assests/coffee/coffee_customization/coffee_customization_logo/Coffee_Customization_Logo.png'),
                                 Container(height: 1,color: Colors.transparent,)
@@ -404,9 +479,14 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Icon(
-                                        Icons.arrow_back_ios,
-                                        color: Colors.white,
+                                      GestureDetector(
+                                        onTap:(){
+                                          Navigator.pop(context) ;
+                                        },
+                                        child: Icon(
+                                          Icons.arrow_back_ios,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                       Image.asset('assests/coffee/coffee_customisation_two/coffee_customisation_logo/Coffee_Customization_Logo.png'),
                                       Container(height: 1,width: 1,color: Colors.transparent,)
@@ -1041,19 +1121,19 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                                   onChangeEnd: (double value){
                                                     setState(() {
                                                       _sugarLevelOpacity = 0 ;
-                                                      if(value<10){
+                                                      if(value<=10){
                                                         selectedSugarLevel = 'No Sugar';
                                                       }
-                                                      else if(value<35){
+                                                      else if(value<=35){
                                                         selectedSugarLevel = 'Little Sugar';
                                                       }
-                                                      else if(value<65){
+                                                      else if(value<=65){
                                                         selectedSugarLevel = 'Medium Sugar';
                                                       }
-                                                      else if(value<90){
+                                                      else if(value<=90){
                                                         selectedSugarLevel = 'Extra Sugar';
                                                       }
-                                                      else if(value<100){
+                                                      else if(value<=100){
                                                         selectedSugarLevel = 'Nothing But Sugar';
                                                       }
                                                     });
@@ -1105,19 +1185,19 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                                   onChangeEnd: (double value){
                                                     setState(() {
                                                       _caffeineLevelOpacity = 0 ;
-                                                      if(value<10){
+                                                      if(value<=10){
                                                         selectedCaffeineLevel = 'Very Light';
                                                       }
-                                                      else if(value<35){
+                                                      else if(value<=35){
                                                         selectedCaffeineLevel = 'Light';
                                                       }
-                                                      else if(value<65){
+                                                      else if(value<=65){
                                                         selectedCaffeineLevel = 'Medium';
                                                       }
-                                                      else if(value<90){
+                                                      else if(value<=90){
                                                         selectedCaffeineLevel = 'Strong';
                                                       }
-                                                      else if(value<100){
+                                                      else if(value<=100){
                                                         selectedCaffeineLevel = 'Black Coffee';
                                                       }
                                                     });
@@ -1357,8 +1437,8 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                         children: [
                                           SyrupCard(
                                             text: 'CARAMEL',
-                                            imageContainer: Draggable<String>(
-                                              data: 'Caramel Syrup',
+                                            imageContainer: Draggable<List>(
+                                              data: [1,'Caramel Syrup'],
                                               child: Container(
                                                 child: Image.asset('assests/coffee/coffee_customisation_two/caramel_image/Caramel_Image.png'),
                                               ),
@@ -1366,6 +1446,7 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                                 child: Image.asset('assests/coffee/coffee_customisation_two/caramel_image/Caramel_Image.png'),
                                               ),
                                               childWhenDragging: Container(
+                                                margin: EdgeInsets.only(left: 5,top: 10),
                                                 height: 60,
                                                 width: 60,
                                                 decoration: BoxDecoration(
@@ -1378,20 +1459,68 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                           ),
                                           SyrupCard(
                                             text: 'VANILLA',
-                                            imageContainer: Container(
-                                              child: Image.asset('assests/coffee/coffee_customisation_two/vanilla/Vanilla_Image.png'),
+                                            imageContainer: Draggable<List>(
+                                              data: [1,'Vanilla Syrup'],
+                                              child: Container(
+                                                child: Image.asset('assests/coffee/coffee_customisation_two/vanilla/Vanilla_Image.png'),
+                                              ),
+                                              feedback: Container(
+                                                child: Image.asset('assests/coffee/coffee_customisation_two/vanilla/Vanilla_Image.png'),
+                                              ),
+                                              childWhenDragging: Container(
+                                                margin: EdgeInsets.only(left: 5,top: 10),
+                                                height: 60,
+                                                width: 60,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(17),
+                                                  color: Color(0xffF4EFE8),
+                                                  border: Border.all(width: 1 , color: Colors.black ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           SyrupCard(
                                             text: 'HAZELNUT',
-                                            imageContainer: Container(
-                                              child: Image.asset('assests/coffee/coffee_customisation_two/hazel_nut/Hazelnut_Image.png'),
+                                            imageContainer: Draggable<List>(
+                                              data: [1,'Hazelnut Syrup'],
+                                              child: Container(
+                                                child: Image.asset('assests/coffee/coffee_customisation_two/hazel_nut/Hazelnut_Image.png'),
+                                              ),
+                                              feedback: Container(
+                                                child: Image.asset('assests/coffee/coffee_customisation_two/hazel_nut/Hazelnut_Image.png'),
+                                              ),
+                                              childWhenDragging: Container(
+                                                margin: EdgeInsets.only(left: 5,top: 10),
+                                                height: 60,
+                                                width: 60,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(17),
+                                                  color: Color(0xffF4EFE8),
+                                                  border: Border.all(width: 1 , color: Colors.black ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           SyrupCard(
                                             text: 'SUGAR-FREE\nVANILLA',
-                                            imageContainer: Container(
-                                              child: Image.asset('assests/coffee/coffee_customisation_two/sugarfree_vanilla/Sugarfree_Vanilla_Image.png'),
+                                            imageContainer: Draggable<List>(
+                                              data: [1,'Sugar Free Vanilla Syrup'],
+                                              child: Container(
+                                                child: Image.asset('assests/coffee/coffee_customisation_two/sugarfree_vanilla/Sugarfree_Vanilla_Image.png'),
+                                              ),
+                                              feedback: Container(
+                                                child: Image.asset('assests/coffee/coffee_customisation_two/sugarfree_vanilla/Sugarfree_Vanilla_Image.png'),
+                                              ),
+                                              childWhenDragging: Container(
+                                                margin: EdgeInsets.only(left: 5,top: 10),
+                                                height: 60,
+                                                width: 60,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(17),
+                                                  color: Color(0xffF4EFE8),
+                                                  border: Border.all(width: 1 , color: Colors.black ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -1459,23 +1588,70 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                             children: [
                                               ToppingsCard(
                                                 text: 'Whipped\nCream',
-                                                imageContainer: Container(
-                                                  child: Image.asset('assests/coffee/coffee_customisation_two/whipped_cream/Whipped_Cream_Image.png'),
+                                                imageContainer: Draggable<List>(
+                                                  data: [2,'Whipped Cream'],
+                                                  child: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/whipped_cream/Whipped_Cream_Image.png'),
+                                                  ),
+                                                  feedback: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/whipped_cream/Whipped_Cream_Image.png'),
+                                                  ),
+                                                  childWhenDragging: Container(
+                                                    margin: EdgeInsets.only(left: 5,top: 10),
+                                                    height: 60,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(17),
+                                                      color: Color(0xffF4EFE8),
+                                                      border: Border.all(width: 1 , color: Colors.black ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               ToppingsCard(
                                                 text: 'Sprinkles',
-                                                imageContainer: Container(
-                                                  child: Image.asset('assests/coffee/coffee_customisation_two/sprinkles/Sprinkles_Image.png'),
+                                                imageContainer: Draggable<List>(
+                                                  data: [2,'Sprinkles'],
+                                                  child: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/sprinkles/Sprinkles_Image.png'),
+                                                  ),
+                                                  feedback: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/sprinkles/Sprinkles_Image.png'),
+                                                  ),
+                                                  childWhenDragging: Container(
+                                                    margin: EdgeInsets.only(left: 5,top: 10),
+                                                    height: 60,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(17),
+                                                      color: Color(0xffF4EFE8),
+                                                      border: Border.all(width: 1 , color: Colors.black ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               ToppingsCard(
                                                 text: 'Caramel\nDrizzle',
-                                                imageContainer: Container(
-                                                  child: Image.asset('assests/coffee/coffee_customisation_two/caramel_drizzle/Caramel_Drizzle_Image.png'),
+                                                imageContainer: Draggable<List>(
+                                                  data: [2,'Caramel Drizzle'],
+                                                  child: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/caramel_drizzle/Caramel_Drizzle_Image.png'),
+                                                  ),
+                                                  feedback: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/caramel_drizzle/Caramel_Drizzle_Image.png'),
+                                                  ),
+                                                  childWhenDragging: Container(
+                                                    margin: EdgeInsets.only(left: 5,top: 10),
+                                                    height: 60,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(17),
+                                                      color: Color(0xffF4EFE8),
+                                                      border: Border.all(width: 1 , color: Colors.black ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-
                                             ],
                                           ),
                                           SizedBox(
@@ -1484,22 +1660,71 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
+
                                               ToppingsCard(
                                                 text: 'Chocolate\nDrizzle',
-                                                imageContainer: Container(
-                                                  child: Image.asset('assests/coffee/coffee_customisation_two/chocolate_drizzle/Chocolate_Drizzle_Image.png'),
+                                                imageContainer: Draggable<List>(
+                                                  data: [2,'Chocolate Drizzle'],
+                                                  child: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/chocolate_drizzle/Chocolate_Drizzle_Image.png'),
+                                                  ),
+                                                  feedback: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/chocolate_drizzle/Chocolate_Drizzle_Image.png'),
+                                                  ),
+                                                  childWhenDragging: Container(
+                                                    margin: EdgeInsets.only(left: 5,top: 10),
+                                                    height: 60,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(17),
+                                                      color: Color(0xffF4EFE8),
+                                                      border: Border.all(width: 1 , color: Colors.black ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               ToppingsCard(
                                                 text: 'Cinnamon\nPowder',
-                                                imageContainer: Container(
-                                                  child: Image.asset('assests/coffee/coffee_customisation_two/cinnaman_powder/Cinnamon_Powder_Image.png'),
+                                                imageContainer: Draggable<List>(
+                                                  data: [2,'Cinnamon Powder'],
+                                                  child: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/cinnaman_powder/Cinnamon_Powder_Image.png'),
+                                                  ),
+                                                  feedback: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/cinnaman_powder/Cinnamon_Powder_Image.png'),
+                                                  ),
+                                                  childWhenDragging: Container(
+                                                    margin: EdgeInsets.only(left: 5,top: 10),
+                                                    height: 60,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(17),
+                                                      color: Color(0xffF4EFE8),
+                                                      border: Border.all(width: 1 , color: Colors.black ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               ToppingsCard(
                                                 text: 'Cocoa\nPowder',
-                                                imageContainer: Container(
-                                                  child: Image.asset('assests/coffee/coffee_customisation_two/cocoa_powder/Cocoa_Powder_Image.png'),
+                                                imageContainer: Draggable<List>(
+                                                  data: [2,'Cocoa Powder'],
+                                                  child: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/cocoa_powder/Cocoa_Powder_Image.png'),
+                                                  ),
+                                                  feedback: Container(
+                                                    child: Image.asset('assests/coffee/coffee_customisation_two/cocoa_powder/Cocoa_Powder_Image.png'),
+                                                  ),
+                                                  childWhenDragging: Container(
+                                                    margin: EdgeInsets.only(left: 5,top: 10),
+                                                    height: 60,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(17),
+                                                      color: Color(0xffF4EFE8),
+                                                      border: Border.all(width: 1 , color: Colors.black ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
 
@@ -1520,14 +1745,243 @@ class _CoffeeCustomisationState extends State<CoffeeCustomisation> {
                         ],
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      height: screenHeight,
-                      width: screenWidth,
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Image.asset('assests/coffee/coffee_customization/coffee_machine/Coffee_Machine_Group.png'),
-                      ),
+                    Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (_)=> AlertDialog(
+                                elevation: 15,
+                                title: Text('Order to be placed'),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Milk Type : ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedMilkType'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Sugar Type :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedSugarType'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Sugar Level :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedSugarLevel'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Caffeine Level :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedCaffeineLevel'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Temperature :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedTemperature'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Syrup :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text('$selectedSyrup'),
+                                      ],
+                                    ) ,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Toppings :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text('$selectedToppings'),
+                                        ),
+                                      ],
+                                    ) ,
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Total Cost :',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          '\$10',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ) ,
+
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.pop(context) ;
+                                    },
+                                    child: Text(
+                                      'Cancel',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: 'GoogleSans Bld',
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async{
+                                      if(_locationData != null){
+                                        var time = DateTime.now().toString() ;
+
+                                        await _firestore.collection('Starbucks').add({
+                                          'Milk Type' : selectedMilkType,
+                                          'Sugar Type' : selectedSugarType,
+                                          'Sugar Level' : selectedSugarLevel,
+                                          'Caffeine Level' : selectedCaffeineLevel,
+                                          'Temperature' : selectedTemperature,
+                                          'Syrup' : selectedSyrup,
+                                          'Toppings' : selectedToppings,
+                                          'User' : '$email',
+                                          'date_time' : time ,
+                                          'Latitude' : _locationData.latitude ,
+                                          'Longitude' : _locationData.longitude ,
+                                        });
+                                        await Fluttertoast.showToast(
+                                          msg: "Placed Order Successfully",
+                                          textColor: Color(0xffF8AD2C),
+                                          backgroundColor: Colors.white,
+                                        );
+
+                                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+
+                                      }
+                                      else{
+                                        await Fluttertoast.showToast(
+                                          msg: "Turn on your location to place your order",
+                                          textColor: Color(0xffF8AD2C),
+                                          backgroundColor: Colors.white,
+                                        );
+                                        Navigator.pop(context);
+                                      }
+
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(left: 4, top: 4),
+                                      height: 30,
+                                      width: 75,
+                                      child: Center(
+                                        child: Text(
+                                          'Confirm',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'GoogleSans Bld',
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffFEDA92),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(7),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.bottomCenter,
+                            height: screenHeight,
+                            width: screenWidth,
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: DragTarget(
+                                builder: (BuildContext context,
+                                    List<dynamic> accepted,
+                                    List<dynamic> rejected){
+                                  return Image.asset('assests/coffee/coffee_customization/coffee_machine/Coffee_Machine_Group.png') ;
+                                },
+                                onAccept: (List data){
+                                  setState(() {
+                                    if(data[0]==1){
+                                      selectedSyrup = data[1];
+                                    }
+                                    if(data[0]==2){
+                                      if(selectedToppings.contains(data[1]) == false){
+                                        selectedToppings.add(data[1]);
+                                      }
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(bottom: 80,left: 80),
+                          alignment: Alignment.bottomLeft,
+                          height: screenHeight,
+                          width: screenWidth,
+                          child: Image.asset('assests/coffee/coffee_customisation_two/click_on_machine/Click_on_Machine_Group.png'),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -1593,8 +2047,7 @@ class _SyrupCardState extends State<SyrupCard> {
   }
 }
 
-
-class ToppingsCard extends StatelessWidget {
+class ToppingsCard extends StatefulWidget {
 
   final Widget imageContainer;
   final String text;
@@ -1605,13 +2058,18 @@ class ToppingsCard extends StatelessWidget {
   });
 
   @override
+  _ToppingsCardState createState() => _ToppingsCardState();
+}
+
+class _ToppingsCardState extends State<ToppingsCard> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          imageContainer,
+          widget.imageContainer,
           Text(
-            text,
+            widget.text,
             textAlign: TextAlign.center,
             style: TextStyle(
               shadows: [
@@ -1625,11 +2083,12 @@ class ToppingsCard extends StatelessWidget {
               fontFamily: 'GoogleSans Bld',
             ),
           ),
-
         ],
       ),
     );
   }
 }
+
+
 
 

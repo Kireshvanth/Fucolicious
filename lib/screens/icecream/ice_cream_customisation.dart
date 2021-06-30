@@ -1075,8 +1075,6 @@ class _IceCreamCustomisationState extends State<IceCreamCustomisation> {
                                 ],
                               ),
                             );
-
-
                           },
                           child: Container(
                             child: Stack(

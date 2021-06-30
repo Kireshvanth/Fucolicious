@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:git_sem_custom_food/main.dart';
+import 'package:git_sem_custom_food/screens/coffee/coffee_customisation.dart';
 
 
 class CoffeeDashBoard extends StatefulWidget {
@@ -125,6 +126,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                       children: [
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF7F5EA),
                             radius: 65,
                           ),
@@ -133,6 +135,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF7F5EA),
                             radius: 65,
                           ),
@@ -141,6 +144,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF7F5EA),
                             radius: 65,
                           ),
@@ -149,6 +153,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF7F5EA),
                             radius: 65,
                           ),
@@ -157,6 +162,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF7F5EA),
                             radius: 65,
                           ),
@@ -207,6 +213,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                       children: [
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF8F8D9),
                             radius: 65,
                           ),
@@ -215,6 +222,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF8F8D9),
                             radius: 65,
                           ),
@@ -223,6 +231,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF8F8D9),
                             radius: 65,
                           ),
@@ -231,6 +240,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF8F8D9),
                             radius: 65,
                           ),
@@ -239,6 +249,7 @@ class _CoffeeDashBoardState extends State<CoffeeDashBoard> {
                         ),
                         UsableCard(
                           image: CircleAvatar(
+                            child: Image.asset('assests/coffee/Coffee1/Coffee1.png'),
                             backgroundColor: Color(0xffF8F8D9),
                             radius: 65,
                           ),
@@ -300,53 +311,58 @@ class UsableCard extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height ;
     double screenWidth = MediaQuery.of(context).size.width ;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        height: 100,
-        decoration: BoxDecoration(
-          color: Color(0xffFFFDF9),
-          border: Border.all(
-            color: Colors.black,
-          ),
-          borderRadius: BorderRadius.circular(40.0),
-        ),
-        width: screenWidth/3,
-        child: Column(
-          children: [
-            Expanded(
-              flex: 60,
-              child: image,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context,MaterialPageRoute(builder:(context)=> CoffeeCustomisation()));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            color: Color(0xffFFFDF9),
+            border: Border.all(
+              color: Colors.transparent,
             ),
-            Expanded(
-              flex: 20,
-              child: Stack(
-                children: [
-                  Center(
-                    child: Image.asset('assests/coffee/Drawn_Path_Price/Drawn_Path_Price.png'),
-                  ),
-                  Center(
-                    child: Text(
-                      cost,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+            borderRadius: BorderRadius.circular(40.0),
+          ),
+          width: screenWidth/3,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 60,
+                child: image,
+              ),
+              Expanded(
+                flex: 20,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Image.asset('assests/coffee/Drawn_Path_Price/Drawn_Path_Price.png'),
+                    ),
+                    Center(
+                      child: Text(
+                        cost,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 20,
-              child: Text(
-                itemName,
-                style: TextStyle(
-                  fontFamily: 'GoogleSans',
-                  fontSize: 15,
+                  ],
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                flex: 20,
+                child: Text(
+                  itemName,
+                  style: TextStyle(
+                    fontFamily: 'GoogleSans',
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
