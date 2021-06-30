@@ -9,6 +9,7 @@ import 'screens/login_screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/coffee/coffee_dashboard.dart';
+import 'package:git_sem_custom_food/screens/coffee/coffee_customisation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +18,7 @@ void main() async {
     MaterialApp(
       home:
           // FirebaseAuth.instance.currentUser == null ? WelcomeScreen() : MyApp(),
-          CategoriesScreen(),
+          CoffeeCustomisation(),
       title: "Custom Food",
       debugShowCheckedModeBanner: false,
     ),
