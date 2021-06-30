@@ -9,6 +9,7 @@ class BurgerDashBoard extends StatefulWidget {
 }
 
 class _BurgerDashBoardState extends State<BurgerDashBoard> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -176,7 +177,6 @@ class _BurgerDashBoardState extends State<BurgerDashBoard> {
                         tag: 'burger',
                         child: Container(
                           child: ListWheelScrollViewX(
-
                             controller: _controller1,
                             diameterRatio: 4,
                             itemExtent: 170,
@@ -326,7 +326,7 @@ class UsableCard extends StatelessWidget {
   final Widget image ;
   final String cost ;
   final String itemName ;
-  bool mustTry ;
+  final bool mustTry ;
 
   UsableCard({@required this.image,@required this.cost , @required this.itemName , this.mustTry });
 
