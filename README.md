@@ -9,7 +9,7 @@ I am very delighted to publish our Freshman year project 'Fucolicious'. Fucolici
 - We used Flutter for frontend, Firebase as database, Python for APIs, and Google Cloud's Dialogflow to create our very own voice assistant which is linked with Google Assistant.
 - The UI was designed in Adobe XD and Adobe Photoshop.
 - Weather API using Python - It scraps the current weather details and will let us know if the drones can fly in the current weather conditions.
-- Translation API using Python
+- Translation API using Python.
 
 I really have to talk about my team - Ashwin Karthick, Nithiin, KAVIN ARAVINDHAN R, ASWATH HARISH, Sivasaran T. Even though most of them were new to programming, they spent so much time and effort to learn new things and present such a wonderful project in a short span of time.
 
